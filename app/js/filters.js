@@ -1,5 +1,3 @@
-'use strict';
-
 /* Filters */
 
-angular.module('tweetCheckFilters', []);
+angular.module('tweetCheck.filters', []);
