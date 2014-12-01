@@ -64,24 +64,24 @@ angular.module('tweetCheck.controllers', [])
     return remaining;
   };
 
-  $scope.save = function(newTweet) {
+  $scope.save = function(tweet) {
     var saveSuccess = function() {
       $state.go('dashboard.review');
     };
 
-    if (newTweet.id !== undefined) {
-      Tweet.update(newTweet, saveSuccess);
+    if (tweet.id !== undefined) {
+      Tweet.update(tweet, saveSuccess);
     } else {
-      Tweet.save(newTweet, saveSuccess);
+      Tweet.save(tweet, saveSuccess);
     }
   };
 
-  $scope.publish = function(newTweet) {
-    newTweet.approved = true;
-    $scope.save(newTweet);
+  $scope.publish = function(tweet) {
+    tweet.approved = true;
+    $scope.save(tweet);
   };
 })
 
 .controller('EditCtrl', function($scope, $stateParams, Tweet) {
-  $scope.newTweet = Tweet.get({'id': $stateParams.id});
+  $scope.tweet = Tweet.get({'id': $stateParams.id});
 });
