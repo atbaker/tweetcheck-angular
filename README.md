@@ -1,4 +1,4 @@
-tweetcheck-nginx
-================
+tweetcheck-angular
+==================
 
-A small repo for a custom Nginx image
+Contains front-end code for the Tweetcheck web app
