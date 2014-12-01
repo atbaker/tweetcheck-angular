@@ -13,8 +13,8 @@
       </div>
       <div class="form-group">
         <label for="InputBody">Body</label>
-        <textarea class="form-control" rows="3" name="body" id="InputBody" ng-model="newTweet.body" ng-change="updateCharacterCounter(newTweet.body)" required></textarea>
-        <p class="pull-right">{{ remainingCharacters }}</p>
+        <textarea class="form-control" rows="3" name="body" id="InputBody" ng-model="newTweet.body" required></textarea>
+        <p class="pull-right">{{ getCharacterCounter(newTweet.body) }}</p>
       </div>
       <button class="btn btn-success" ng-click="publish(newTweet)">Save and post</button>
       <button class="btn btn-primary" ng-click="save(newTweet)">Save</button>

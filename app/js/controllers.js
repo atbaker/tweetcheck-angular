@@ -45,10 +45,9 @@ angular.module('tweetCheck.controllers', [])
   var shortUrlLengthHttps = 23;
   $scope.remainingCharacters = 140;
 
-  $scope.updateCharacterCounter = function(body) {
+  $scope.getCharacterCounter = function(body) {
     if (body === undefined) {
-      $scope.remainingCharacters = 140;
-      return;
+      return 140;
     }
     var splitBody = body.split(' ');
     var remaining = 140;
@@ -62,7 +61,7 @@ angular.module('tweetCheck.controllers', [])
         remaining -= Math.max(splitBody[i].length, 1);
       }
     }
-    $scope.remainingCharacters = remaining;
+    return remaining;
   };
 
   $scope.save = function(newTweet) {
