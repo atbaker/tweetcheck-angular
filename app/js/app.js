@@ -30,8 +30,20 @@ angular.module('tweetCheck', [
 
     .state('dashboard.compose', {
       url: '/compose',
-      templateUrl: '/views/compose.html',
+      abstract: true,
+      template: '<ui-view/>',
       controller: 'ComposeCtrl'
+    })
+
+    .state('dashboard.compose.new', {
+      url: '/new',
+      templateUrl: '/views/compose.html',
+    })
+
+    .state('dashboard.compose.edit', {
+      url: '/:id/edit',
+      templateUrl: '/views/compose.html',
+      controller: 'EditCtrl'
     })
 
     .state('dashboard.authorize', {

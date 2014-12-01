@@ -27,7 +27,7 @@ angular.module('tweetCheck.controllers', [])
     for (var i=0; i<$scope.tweets.results.length; i++) {
       var handleId = $scope.tweets.results[i].handle;
       if (!$scope.handles.hasOwnProperty(handleId)) {
-        $scope.handles[handleId] = Handle.query({handleId: handleId});
+        $scope.handles[handleId] = Handle.get({id: handleId});
       }
     }
   });
@@ -39,10 +39,10 @@ angular.module('tweetCheck.controllers', [])
 })
 
 .controller('ComposeCtrl', function($scope, $state, Handle, Tweet) {
+  $scope.handles = Handle.query();
+
   var shortUrlLength = 22;
   var shortUrlLengthHttps = 23;
-  
-  $scope.handles = Handle.query();
   $scope.remainingCharacters = 140;
 
   $scope.updateCharacterCounter = function(body) {
@@ -65,8 +65,24 @@ angular.module('tweetCheck.controllers', [])
     $scope.remainingCharacters = remaining;
   };
 
-  $scope.create = function(newTweet) {
-    Tweet.save(newTweet);
-    $state.go('dashboard.review');
+  $scope.save = function(newTweet) {
+    var saveSuccess = function() {
+      $state.go('dashboard.review');
+    };
+
+    if (newTweet.id !== undefined) {
+      Tweet.update(newTweet, saveSuccess);
+    } else {
+      Tweet.save(newTweet, saveSuccess);
+    }
   };
+
+  $scope.publish = function(newTweet) {
+    newTweet.approved = true;
+    $scope.save(newTweet);
+  };
+})
+
+.controller('EditCtrl', function($scope, $stateParams, Tweet) {
+  $scope.newTweet = Tweet.get({'id': $stateParams.id});
 });
