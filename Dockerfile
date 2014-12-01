@@ -30,9 +30,9 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN rm /etc/nginx/conf.d/example_ssl.conf
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY . /usr/share/nginx
+COPY . /usr/share/nginx/html
 
-WORKDIR /usr/share/nginx
+WORKDIR /usr/share/nginx/html
 
 # Install bower dependencies
 RUN bower install --allow-root

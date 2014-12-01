@@ -1,35 +1,34 @@
-'use strict';
-
 // App module
-var tweetCheck = angular.module('tweetCheck', [
-  'ngRoute',
+angular.module('tweetCheck', [
+  'ui.router',
   'tweetCheckControllers',
   'tweetCheckFilters',
   'tweetCheckServices'
-]);
+])
 
-tweetCheck.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.
-    when('/', {
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('review', {
+      url: '/review',
       templateUrl: '/views/tweet-list.html',
       controller: 'TweetListCtrl'
-    }).
-    when('/compose', {
+    })
+
+    .state('compose', {
+      url: '/compose',
       templateUrl: '/views/compose.html',
       controller: 'ComposeCtrl'
-    }).
-    when('/authorize', {
+    })
+
+    .state('authorize', {
+      url: '/authorize',
       templateUrl: '/views/authorize.html',
       controller: 'AuthorizeCtrl'
-    }).
-    otherwise({redirectTo: '/'});
-}]);
+    });
 
-tweetCheck.config(['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-  $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-}]);
+  $urlRouterProvider.otherwise('/review');
+})
 
-tweetCheck.config(['$resourceProvider', function($resourceProvider) {
+.config(function($resourceProvider) {
   $resourceProvider.defaults.stripTrailingSlashes = false;
-}]);
+});
