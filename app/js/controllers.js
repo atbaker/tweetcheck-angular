@@ -34,7 +34,7 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.approveTweet = function(tweet) {
     tweet.approved = true;
-    Tweet.update({tweetId:tweet.id}, tweet);
+    Tweet.update(tweet);
   };
 })
 
