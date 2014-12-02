@@ -28,7 +28,9 @@
         Recent activity
       </div>
       <div class="panel-body">
-        <p>FOOO</p>
+        <div class="list-group">
+          <div ng-repeat="action in activity.results" ng-include="'views/partials/action.html'"></div>
+        </div>
       </div>
     </div>
   </div>

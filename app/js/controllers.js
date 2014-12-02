@@ -20,7 +20,7 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('TweetListCtrl', function($scope, Tweet, Handle) {
+.controller('TweetListCtrl', function($scope, Tweet, Handle, Action) {
   $scope.handles = {};
   $scope.tweets = Tweet.query(function() {
     // Populate the handles object with details about each handle in these tweets
@@ -31,6 +31,8 @@ angular.module('tweetCheck.controllers', [])
       }
     }
   });
+
+  $scope.activity = Action.query();
 
   $scope.approveTweet = function(tweet) {
     tweet.approved = true;

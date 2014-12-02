@@ -4,15 +4,21 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 
 .factory('Tweet', function($resource) {
   return $resource('api/tweets/:id', {id: '@id'}, {
-    query: {method:'GET', isArray: false},
-    update: {method:'PUT'}
+    query: {method: 'GET', isArray: false},
+    update: {method: 'PUT'}
   });
 })
 
 .factory('Handle', function($resource) {
   return $resource('api/handles/:id', {id: '@id'}, {
-      query: {method:'GET', isArray: false},
-      update: {method:'PUT'}
+      query: {method: 'GET', isArray: false},
+      update: {method: 'PUT'}
+  });
+})
+
+.factory('Action', function($resource) {
+  return $resource('api/actions/:id', {}, {
+    query: {method: 'GET', isArray: false}
   });
 })
 
