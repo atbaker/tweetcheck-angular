@@ -1,6 +1,7 @@
 // App module
 angular.module('tweetCheck', [
   'ui.router',
+  'angularMoment',
   'tweetCheck.controllers',
   'tweetCheck.filters',
   'tweetCheck.services'
@@ -90,6 +91,6 @@ angular.module('tweetCheck', [
   };
 })
 
-.config(['$httpProvider', function($httpProvider) {
+.config(function($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
-}]);
+});

@@ -8,7 +8,8 @@
   <div class="col-lg-8">
     <div class="panel panel-default" ng-repeat="tweet in tweets.results | filter:{approved: false}">
       <div class="panel-heading">
-        <h5>Submitted by Andrew at 4:03pm</h5>
+        <h5 ng-if="tweet.created === tweet.last_modified">Submitted by {{tweet.author}} <span am-time-ago="tweet.created"></span></h5>
+        <h5 ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></h5>
       </div>
       <div class="panel-body">
         <div ng-include="'views/partials/tweet-card.html'"></div>
