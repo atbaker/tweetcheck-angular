@@ -14,3 +14,13 @@
 .tweet-body {
     margin-bottom: 0;
 }
+
+.action-icon {
+    float: left;
+    margin-top: 3px;
+    margin-left: -20px;
+}
+
+.action-item {
+    padding-left: 25px;
+}
