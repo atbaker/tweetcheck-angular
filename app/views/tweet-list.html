@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-lg-8">
-    <div class="panel panel-default" ng-repeat="tweet in tweets.results | filter:{approved: false}">
+    <div class="panel panel-default" ng-repeat="tweet in tweets.results | filter:{status: 0}">
       <div class="panel-heading">
         <h5 ng-if="tweet.created === tweet.last_modified">Submitted by {{tweet.author}} <span am-time-ago="tweet.created"></span></h5>
         <h5 ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></h5>
@@ -16,7 +16,7 @@
       </div>
       <div class="panel-footer">
           <a ui-sref="dashboard.compose.edit({id: tweet.id})" class="btn btn-primary"><span class="fa fa-pencil-square"></span> Edit</a>
-          <button ng-click="" type="button" class="btn btn-danger"><span class="fa fa-remove"></span> Reject</button>
+          <button ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger"><span class="fa fa-remove"></span> Reject</button>
           <button ng-click="approveTweet(tweet)" type="button" class="btn btn-success"><span class="fa fa-check"></span> Post</button>
       </div>
     </div>

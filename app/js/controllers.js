@@ -8,8 +8,18 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('DashboardCtrl', function($scope, AuthService) {
+.controller('DashboardCtrl', function($scope, AuthService, Tweet) {
   $scope.logout = AuthService.logout;
+
+  $scope.approveTweet = function(tweet) {
+    tweet.status = 1;
+    Tweet.update(tweet);
+  };
+
+  $scope.rejectTweet = function(tweet) {
+    tweet.status = -1;
+    Tweet.update(tweet);
+  };
 })
 
 .controller('AuthorizeCtrl', function($scope, $http) {
@@ -33,11 +43,6 @@ angular.module('tweetCheck.controllers', [])
   });
 
   $scope.activity = Action.query();
-
-  $scope.approveTweet = function(tweet) {
-    tweet.approved = true;
-    Tweet.update(tweet);
-  };
 })
 
 .controller('ComposeCtrl', function($scope, $state, Handle, Tweet) {
@@ -79,7 +84,7 @@ angular.module('tweetCheck.controllers', [])
   };
 
   $scope.publish = function(tweet) {
-    tweet.approved = true;
+    tweet.status = 1;
     $scope.save(tweet);
   };
 })
