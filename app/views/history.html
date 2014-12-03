@@ -1,0 +1,32 @@
+<div class="row">
+  <h1>Tweet History</h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        All tweets
+      </div>
+
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr role="row">
+                <th>Tweet</th>
+                <th>View on twitter.com</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in response.results">
+                <td>{{ item.body | summarize:true}}</td>
+                <td>{{ item.handle }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

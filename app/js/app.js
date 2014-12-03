@@ -29,6 +29,19 @@ angular.module('tweetCheck', [
       controller: 'TweetListCtrl'
     })
 
+    .state('dashboard.history', {
+      url: '/history',
+      abstract: true,
+      template: '<ui-view/>',
+      controller: 'HistoryCtrl'
+    })
+
+    .state('dashboard.history.tweets', {
+      url: '/tweets',
+      templateUrl: '/views/history.html',
+      controller: 'TweetHistoryCtrl'
+    })
+
     .state('dashboard.compose', {
       url: '/compose',
       abstract: true,

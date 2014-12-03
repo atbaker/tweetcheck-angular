@@ -45,6 +45,14 @@ angular.module('tweetCheck.controllers', [])
   $scope.activity = Action.query();
 })
 
+.controller('HistoryCtrl', function($scope) {
+
+})
+
+.controller('TweetHistoryCtrl', function($scope, Tweet) {
+  $scope.response = Tweet.query();
+})
+
 .controller('ComposeCtrl', function($scope, $state, Handle, Tweet) {
   $scope.handles = Handle.query();
 
