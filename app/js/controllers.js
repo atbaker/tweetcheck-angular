@@ -56,29 +56,6 @@ angular.module('tweetCheck.controllers', [])
 .controller('ComposeCtrl', function($scope, $state, Handle, Tweet) {
   $scope.handles = Handle.query();
 
-  var shortUrlLength = 22;
-  var shortUrlLengthHttps = 23;
-  $scope.remainingCharacters = 140;
-
-  $scope.getCharacterCounter = function(body) {
-    if (body === undefined) {
-      return 140;
-    }
-    var splitBody = body.split(' ');
-    var remaining = 140;
-
-    for (var i=0; i<splitBody.length; i++) {
-      if (splitBody[i].substring(0, 7) === 'http://' && splitBody[i].length > shortUrlLength) {
-        remaining -= shortUrlLength;
-      } else if (splitBody[i].substring(0, 8) === 'https://' && splitBody[i].length > shortUrlLengthHttps) {
-        remaining -= shortUrlLengthHttps;
-      } else {
-        remaining -= Math.max(splitBody[i].length, 1);
-      }
-    }
-    return remaining;
-  };
-
   $scope.save = function(tweet) {
     var saveSuccess = function() {
       $state.go('dashboard.review');

@@ -12,7 +12,7 @@
       <div class="form-group">
         <label for="InputBody">Body</label>
         <textarea class="form-control" rows="3" name="body" id="InputBody" ng-model="tweet.body" required></textarea>
-        <p class="pull-right">{{ getCharacterCounter(tweet.body) }}</p>
+        <p class="pull-right">{{ tweet.body | remainingCharacterCount }}</p>
       </div>
 
       <button class="btn btn-primary" ng-click="save(tweet)">Save</button>
