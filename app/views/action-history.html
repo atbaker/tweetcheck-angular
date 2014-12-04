@@ -15,12 +15,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in response.results">
-          <td><a>{{item.body | summarize:true}}</a></td>
+        <tr ng-repeat="action in response.results">
+          <td><a>{{action.body | summarize:true}}</a></td>
           <td>FOOO</td>
-          <td>{{item.action}}</td>
-          <td>{{item.actor}}</td>
-          <td>{{item.timestamp | date:'medium'}}</td>
+          <td><div ng-include="'views/partials/action-icon.html'" class="pull-left"></div> {{action.action}}</td>
+          <td>{{action.actor}}</td>
+          <td>{{action.timestamp | date:'medium'}}</td>
         </tr>
       </tbody>
     </table>

@@ -1,8 +1,3 @@
-<div ng-switch="action.action">
-    <i ng-switch-when="created" class="fa fa-fw fa-plus action-icon"></i>
-    <i ng-switch-when="edited" class="fa fa-fw fa-pencil-square-o fa-fw action-icon"></i>
-    <i ng-switch-when="posted" class="fa fa-fw fa-check action-icon"></i>
-    <i ng-switch-when="rejected" class="fa fa-fw fa-remove action-icon"></i>
-</div>
+<div ng-include="'views/partials/action-icon.html'" class="action-icon"></div>
 
 <strong>{{action.actor}}</strong> {{action.action}} <a ui-sref="dashboard.compose.edit({id: action.tweet})">"{{action.body | summarize:true}}"</a> <span am-time-ago="action.timestamp"></span>.
