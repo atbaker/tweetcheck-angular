@@ -38,8 +38,14 @@ angular.module('tweetCheck', [
 
     .state('dashboard.history.tweets', {
       url: '/tweets',
-      templateUrl: '/views/history.html',
+      templateUrl: '/views/tweet-history.html',
       controller: 'TweetHistoryCtrl'
+    })
+
+    .state('dashboard.history.actions', {
+      url: '/actions',
+      templateUrl: '/views/action-history.html',
+      controller: 'ActionHistoryCtrl'
     })
 
     .state('dashboard.compose', {

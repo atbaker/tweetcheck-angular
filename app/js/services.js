@@ -5,6 +5,7 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 .factory('Tweet', function($resource) {
   return $resource('api/tweets/:id', {id: '@id'}, {
     query: {method: 'GET', isArray: false},
+    queryApproved: {method: 'GET', isArray: false, params: {status: 1}},
     update: {method: 'PUT'}
   });
 })

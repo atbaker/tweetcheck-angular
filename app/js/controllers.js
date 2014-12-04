@@ -50,7 +50,11 @@ angular.module('tweetCheck.controllers', [])
 })
 
 .controller('TweetHistoryCtrl', function($scope, Tweet) {
-  $scope.response = Tweet.query();
+  $scope.response = Tweet.queryApproved();
+})
+
+.controller('ActionHistoryCtrl', function($scope, Action) {
+  $scope.response = Action.query();
 })
 
 .controller('ComposeCtrl', function($scope, $state, Handle, Tweet) {
