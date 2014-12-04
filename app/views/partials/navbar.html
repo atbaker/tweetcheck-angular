@@ -18,19 +18,23 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a ui-sref="dashboard.review" ui-sref-active="active"><i class="fa fa-check fa-fw"></i> Review</a>
+                    <a ui-sref="dashboard.review" ui-sref-active="active"><i class="fa fa-fw fa-check"></i> Review</a>
+                </li>
+                <li ng-class="showHistory ? 'active' : ''">
+                    <a ng-model="showHistory" ng-click="showHistory=!showHistory"><i class="fa fa-fw fa-history"></i> History <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level" ng-show="showHistory">
+                        <li><a ui-sref="dashboard.history.tweets" ui-sref-active="active"> Tweet history</a></li>
+                        <li><a href="#"> Activity log</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="#">History</a>
+                    <a ui-sref="dashboard.compose.new" ui-sref-active="active"><i class="fa fa-fw fa-pencil-square-o"></i> Compose</a>
                 </li>
                 <li>
-                    <a ui-sref="dashboard.compose.new" ui-sref-active="active"><i class="fa fa-pencil-square-o fa-fw"></i> Compose</a>
+                    <a ui-sref="dashboard.authorize" ui-sref-active="active"><i class="fa fa-fw fa-sign-in"></i> Authorize</a>
                 </li>
                 <li>
-                    <a ui-sref="dashboard.authorize" ui-sref-active="active"><i class="fa fa-sign-in fa-fw"></i> Authorize</a>
-                </li>
-                <li>
-                    <a ui-sref="dashboard.review"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <a ui-sref="dashboard.review"><i class="fa fa-fw fa-gear"></i> Settings</a>
                 </li>
 
             </ul>
