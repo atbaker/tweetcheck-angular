@@ -48,6 +48,12 @@ angular.module('tweetCheck', [
       controller: 'ActionHistoryCtrl'
     })
 
+    .state('dashboard.detail', {
+      url: '/:id',
+      templateUrl: '/views/detail.html',
+      controller: 'DetailCtrl'
+    })
+
     .state('dashboard.compose', {
       url: '/compose',
       abstract: true,

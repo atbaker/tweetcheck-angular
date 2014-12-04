@@ -57,6 +57,11 @@ angular.module('tweetCheck.controllers', [])
   $scope.response = Action.query();
 })
 
+.controller('DetailCtrl', function($scope, $stateParams, Tweet, Action) {
+  $scope.tweet = Tweet.get({id: $stateParams.id});
+  $scope.activity = Action.query({tweet_id: $stateParams.id});
+})
+
 .controller('ComposeCtrl', function($scope, $state, Handle, Tweet) {
   $scope.handles = Handle.query();
 

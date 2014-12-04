@@ -1,22 +1,17 @@
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Review tweets</h1>
+    <h1 class="page-header">View tweet</h1>
   </div>
 </div>
 
 <div class="row">
   <div class="col-lg-8">
-    <div class="panel panel-default" ng-repeat="tweet in tweets.results | filter:{status: 0}">
+    <div class="panel panel-default">
       <div class="panel-heading">
         <div ng-include="'views/partials/tweet-heading.html'"></div>
       </div>
       <div class="panel-body">
         <div ng-include="'views/partials/tweet-card.html'"></div>
-      </div>
-      <div class="panel-footer">
-          <a ui-sref="dashboard.compose.edit({id: tweet.id})" class="btn btn-primary"><span class="fa fa-pencil-square"></span> Edit</a>
-          <button ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger"><span class="fa fa-remove"></span> Reject</button>
-          <button ng-click="approveTweet(tweet)" type="button" class="btn btn-success"><span class="fa fa-check"></span> Post</button>
       </div>
     </div>
   </div>
@@ -24,7 +19,7 @@
   <div class="col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Recent activity
+        Activity log for this tweet
       </div>
       <div class="panel-body">
         <div class="list-group">

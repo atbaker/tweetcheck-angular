@@ -1,0 +1,8 @@
+<div ng-switch on="tweet.status">
+    <h5 ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Submitted by {{tweet.author}} <span am-time-ago="tweet.created"></span></h5>
+    <h5 ng-switch-when="0" ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></h5>
+    
+    <h5 ng-switch-when="1">Posted by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></h5>
+
+    <h5 ng-switch-when="-1">Rejected by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></h5>
+</div>
