@@ -88,8 +88,18 @@ angular.module('tweetCheck', [
         pageTitle: 'view tweet'
       },
       resolve: {
-        tweet: function($stateParams, Tweet) {
-          return Tweet.get({id: $stateParams.id});
+        tweet: function($state, $stateParams, Tweet, $q) {
+          var deferred = $q.deferred();
+          var tweet = Tweet.get({id: $stateParams.id});
+
+          // If this tweet is in 'pending' status, throw an error
+          // so we can redirect to the edit view instead
+          if (tweet.results[0].status === 0) {
+            deferred.reject('This tweet is still being edited');
+            return deferred.promise;
+          } else {
+            return tweet;
+          }
         },
         activity: function($stateParams, Action) {
           return Action.query({tweet_id: $stateParams.id});
@@ -151,6 +161,15 @@ angular.module('tweetCheck', [
 .run(function ($rootScope, $state, $stateParams) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+
+  // Catch and redirect when we try to view tweets that should be edited
+  $rootScope.$on('$stateChangeError',
+    function (event, toState, toParams, fromState, fromParams, error) {
+    if (toState.name === 'dashboard.detail' && toParams.id) {
+      event.preventDefault();
+      $state.go('dashboard.compose.edit', toParams);
+    }
+  });
 })
 
 .config(function($resourceProvider) {
