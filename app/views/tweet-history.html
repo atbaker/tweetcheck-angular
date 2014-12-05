@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in tweets.results">
-          <td><a>{{item.body | summarize:true}}</a></td>
+          <td><a ui-sref="dashboard.detail({id: item.id})">{{item.body | summarize:true}}</a></td>
           <td>{{item.screen_name}}</td>
           <td>{{item.created | date:'medium'}}</td>
           <td>{{item.author}}</td>

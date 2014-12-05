@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="action in activity.results">
-          <td><a>{{action.body | summarize:true}}</a></td>
+          <td><a ui-sref="dashboard.detail({id: action.tweet})">{{action.body | summarize:true}}</a></td>
           <td>FOOO</td>
           <td><div ng-include="'views/partials/action-icon.html'" class="pull-left"></div> {{action.action}}</td>
           <td>{{action.actor}}</td>
