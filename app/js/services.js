@@ -12,7 +12,18 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 
 .factory('Handle', function($resource) {
   return $resource('api/handles/:id', {id: '@id'}, {
-      query: {method: 'GET', isArray: false},
+      query: {method: 'GET', cache: true, isArray: false},
+      queryObject: {method: 'GET', cache: true, transformResponse: function(data, headers) {
+        var handles = angular.fromJson(data).results;
+        var handleObject = {};
+
+        for (var i=0; i < handles.length; i++) {
+          var handle = handles[i];
+          handleObject[handle.id] = handle;
+        }
+
+        return handleObject;
+      }},
       update: {method: 'PUT'}
   });
 })

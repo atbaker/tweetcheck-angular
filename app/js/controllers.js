@@ -30,31 +30,18 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('TweetListCtrl', function($scope, Tweet, Handle, Action) {
-  $scope.handles = {};
-  $scope.tweets = Tweet.query(function() {
-    // Populate the handles object with details about each handle in these tweets
-    for (var i=0; i<$scope.tweets.results.length; i++) {
-      var handleId = $scope.tweets.results[i].handle;
-      if (!$scope.handles.hasOwnProperty(handleId)) {
-        $scope.handles[handleId] = Handle.get({id: handleId});
-      }
-    }
-  });
-
-  $scope.activity = Action.query();
+.controller('TweetListCtrl', function($scope, tweets, handles, activity) {
+  $scope.tweets = tweets;
+  $scope.handles = handles;
+  $scope.activity = activity;
 })
 
-.controller('HistoryCtrl', function($scope) {
-
+.controller('TweetHistoryCtrl', function($scope, tweets) {
+  $scope.tweets = tweets;
 })
 
-.controller('TweetHistoryCtrl', function($scope, Tweet) {
-  $scope.response = Tweet.queryApproved();
-})
-
-.controller('ActionHistoryCtrl', function($scope, Action) {
-  $scope.response = Action.query();
+.controller('ActionHistoryCtrl', function($scope, activity) {
+  $scope.activity = activity;
 })
 
 .controller('DetailCtrl', function($scope, $stateParams, tweet, activity) {
@@ -63,7 +50,7 @@ angular.module('tweetCheck.controllers', [])
 })
 
 .controller('ComposeCtrl', function($scope, $state, handles, Tweet) {
-  // $scope.newTweet = $state.current.data.newTweet;
+  $scope.newTweet = $state.current.data.newTweet;
   $scope.handles = handles;
 
   $scope.save = function(tweet) {

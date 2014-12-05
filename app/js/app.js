@@ -32,6 +32,17 @@ angular.module('tweetCheck', [
       controller: 'TweetListCtrl',
       data: {
         pageTitle: 'dashboard'
+      },
+      resolve: {
+        tweets: function(Tweet) {
+          return Tweet.query();
+        },
+        handles: function(Handle) {
+          return Handle.queryObject();
+        },
+        activity: function(Action) {
+          return Action.query();
+        }
       }
     })
 
@@ -39,7 +50,6 @@ angular.module('tweetCheck', [
       url: '/history',
       abstract: true,
       template: '<ui-view/>',
-      controller: 'HistoryCtrl'
     })
 
     .state('dashboard.history.tweets', {
@@ -48,6 +58,11 @@ angular.module('tweetCheck', [
       controller: 'TweetHistoryCtrl',
       data: {
         pageTitle: 'tweet history'
+      },
+      resolve: {
+        tweets: function(Tweet) {
+          return Tweet.queryApproved();
+        }
       }
     })
 
@@ -57,6 +72,11 @@ angular.module('tweetCheck', [
       controller: 'ActionHistoryCtrl',
       data: {
         pageTitle: 'action history'
+      },
+      resolve: {
+        activity: function(Action) {
+          return Action.query();
+        }
       }
     })
 
