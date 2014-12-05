@@ -12,7 +12,10 @@ angular.module('tweetCheck', [
     .state('login', {
       url: "/login",
       templateUrl: '/views/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginCtrl',
+      data: {
+        pageTitle: 'login'
+      }
     })
 
     // setup an abstract state for the tabs directive
@@ -26,7 +29,10 @@ angular.module('tweetCheck', [
     .state('dashboard.review', {
       url: '/review',
       templateUrl: '/views/tweet-list.html',
-      controller: 'TweetListCtrl'
+      controller: 'TweetListCtrl',
+      data: {
+        pageTitle: 'dashboard'
+      }
     })
 
     .state('dashboard.history', {
@@ -39,19 +45,28 @@ angular.module('tweetCheck', [
     .state('dashboard.history.tweets', {
       url: '/tweets',
       templateUrl: '/views/tweet-history.html',
-      controller: 'TweetHistoryCtrl'
+      controller: 'TweetHistoryCtrl',
+      data: {
+        pageTitle: 'tweet history'
+      }
     })
 
     .state('dashboard.history.actions', {
       url: '/actions',
       templateUrl: '/views/action-history.html',
-      controller: 'ActionHistoryCtrl'
+      controller: 'ActionHistoryCtrl',
+      data: {
+        pageTitle: 'action history'
+      }
     })
 
     .state('dashboard.detail', {
       url: '/:id',
       templateUrl: '/views/detail.html',
       controller: 'DetailCtrl',
+      data: {
+        pageTitle: 'view tweet'
+      },
       resolve: {
         tweet: function($stateParams, Tweet) {
           return Tweet.get({id: $stateParams.id});
@@ -78,6 +93,7 @@ angular.module('tweetCheck', [
       url: '/new',
       templateUrl: '/views/compose.html',
       data: {
+        pageTitle: 'new tweet',
         newTweet: true
       }
     })
@@ -87,6 +103,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/compose.html',
       controller: 'EditCtrl',
       data: {
+        pageTitle: 'edit tweet',
         newTweet: false
       },
       resolve: {
@@ -102,7 +119,10 @@ angular.module('tweetCheck', [
     .state('dashboard.authorize', {
       url: '/authorize',
       templateUrl: '/views/authorize.html',
-      controller: 'AuthorizeCtrl'
+      controller: 'AuthorizeCtrl',
+      data: {
+        pageTitle: 'authorize'
+      }
     });
 
   $urlRouterProvider.otherwise('/dashboard/review');
