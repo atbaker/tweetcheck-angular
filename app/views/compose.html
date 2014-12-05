@@ -1,7 +1,7 @@
 <div class="row">
-  <div ng-switch on="tweet.id" class="col-md-10">
+  <div ng-switch on="newTweet" class="col-lg-8">
 
-    <h2 ng-switch-when="undefined">Compose new tweet</h2>
+    <h2 ng-switch-when="true">Compose new tweet</h2>
     <h2 ng-switch-default>Edit pending tweet</h2>
 
     <form role="form" name="composeForm">
@@ -16,7 +16,7 @@
       </div>
 
       <button class="btn btn-primary" ng-click="save(tweet)">Save</button>
-      <a ng-switch-when="undefined" ui-sref="dashboard.review" class="btn btn-default">Cancel</a>
+      <a ng-switch-when="true" ui-sref="dashboard.review" class="btn btn-default">Cancel</a>
       <button ng-switch-default class="btn btn-danger" ng-click="reject(tweet)">Reject</button>
       <button class="btn btn-success" ng-click="publish(tweet)">Save and post</button>
     </form>

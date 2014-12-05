@@ -17,17 +17,6 @@
   </div>
 
   <div class="col-lg-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Activity log for this tweet
-      </div>
-      <div class="panel-body">
-        <div class="list-group">
-          <li class="list-group-item action-item" ng-repeat="action in activity.results">
-            <div ng-include="'views/partials/action.html'">
-          </li>
-        </div>
-      </div>
-    </div>
+    <div ng-include="'views/partials/action-panel.html'"></div>
   </div>
 </div>

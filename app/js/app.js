@@ -51,25 +51,52 @@ angular.module('tweetCheck', [
     .state('dashboard.detail', {
       url: '/:id',
       templateUrl: '/views/detail.html',
-      controller: 'DetailCtrl'
+      controller: 'DetailCtrl',
+      resolve: {
+        tweet: function($stateParams, Tweet) {
+          return Tweet.get({id: $stateParams.id});
+        },
+        activity: function($stateParams, Action) {
+          return Action.query({tweet_id: $stateParams.id});
+        }
+      }
     })
 
     .state('dashboard.compose', {
       url: '/compose',
       abstract: true,
       template: '<ui-view/>',
-      controller: 'ComposeCtrl'
+      controller: 'ComposeCtrl',
+      resolve: {
+        handles: function(Handle) {
+          return Handle.query();
+        }
+      }
     })
 
     .state('dashboard.compose.new', {
       url: '/new',
       templateUrl: '/views/compose.html',
+      data: {
+        newTweet: true
+      }
     })
 
     .state('dashboard.compose.edit', {
       url: '/:id/edit',
       templateUrl: '/views/compose.html',
-      controller: 'EditCtrl'
+      controller: 'EditCtrl',
+      data: {
+        newTweet: false
+      },
+      resolve: {
+        tweet: function($stateParams, Tweet) {
+          return Tweet.get({id: $stateParams.id});
+        },
+        activity: function($stateParams, Action) {
+          return Action.query({tweet_id: $stateParams.id});
+        }
+      }
     })
 
     .state('dashboard.authorize', {
@@ -79,6 +106,11 @@ angular.module('tweetCheck', [
     });
 
   $urlRouterProvider.otherwise('/dashboard/review');
+})
+
+.run(function ($rootScope, $state, $stateParams) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
 })
 
 .config(function($resourceProvider) {

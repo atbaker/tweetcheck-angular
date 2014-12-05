@@ -57,13 +57,14 @@ angular.module('tweetCheck.controllers', [])
   $scope.response = Action.query();
 })
 
-.controller('DetailCtrl', function($scope, $stateParams, Tweet, Action) {
-  $scope.tweet = Tweet.get({id: $stateParams.id});
-  $scope.activity = Action.query({tweet_id: $stateParams.id});
+.controller('DetailCtrl', function($scope, $stateParams, tweet, activity) {
+  $scope.tweet = tweet;
+  $scope.activity = activity;
 })
 
-.controller('ComposeCtrl', function($scope, $state, Handle, Tweet) {
-  $scope.handles = Handle.query();
+.controller('ComposeCtrl', function($scope, $state, handles, Tweet) {
+  // $scope.newTweet = $state.current.data.newTweet;
+  $scope.handles = handles;
 
   $scope.save = function(tweet) {
     var saveSuccess = function() {
@@ -83,6 +84,6 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('EditCtrl', function($scope, $stateParams, Tweet) {
-  $scope.tweet = Tweet.get({'id': $stateParams.id});
+.controller('EditCtrl', function($scope, tweet) {
+  $scope.tweet = tweet;
 });
