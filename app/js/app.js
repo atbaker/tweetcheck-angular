@@ -37,9 +37,6 @@ angular.module('tweetCheck', [
         tweets: function(Tweet) {
           return Tweet.query();
         },
-        handles: function(Handle) {
-          return Handle.queryObject();
-        },
         activity: function(Action) {
           return Action.query();
         }
@@ -148,9 +145,13 @@ angular.module('tweetCheck', [
   $urlRouterProvider.otherwise('/dashboard/review');
 })
 
-.run(function ($rootScope, $state, $stateParams) {
+.run(function ($rootScope, $state, $stateParams, Handle) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+
+  // The handle metadata probably won't change during a given session
+  // save us some time by pre-loading it at run
+  $rootScope.handleObject = Handle.queryObject();
 })
 
 .config(function($resourceProvider) {

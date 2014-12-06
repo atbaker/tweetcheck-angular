@@ -14,7 +14,6 @@
         <div ng-include="'views/partials/tweet-card.html'"></div>
       </div>
       <div class="panel-footer">
-          <a ui-sref="dashboard.compose.edit({id: tweet.id})" class="btn btn-primary"><span class="fa fa-pencil-square"></span> Edit</a>
           <button ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger"><span class="fa fa-remove"></span> Reject</button>
           <button ng-click="approveTweet(tweet)" type="button" class="btn btn-success"><span class="fa fa-check"></span> Post</button>
       </div>

@@ -30,9 +30,8 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('TweetListCtrl', function($scope, tweets, handles, activity) {
+.controller('TweetListCtrl', function($scope, tweets, activity) {
   $scope.tweets = tweets;
-  $scope.handles = handles;
   $scope.activity = activity;
 })
 

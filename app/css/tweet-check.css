@@ -2,6 +2,10 @@
     margin-left: 60px;
 }
 
+.panel-heading ul {
+    margin-bottom: 0;
+}
+
 .handle-name {
     font-size: 17px;
     font-weight: bold;
