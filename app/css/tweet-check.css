@@ -1,3 +1,8 @@
+.responsive-top-link {
+    display: block !important;
+    margin-right: 0 !important;
+}
+
 .card-heading {
     margin-left: 60px;
 }

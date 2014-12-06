@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-toggle" ng-click="collapseNavbar=!collapseNavbar" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -10,12 +10,8 @@
         <a class="navbar-brand" href="#/">TweetCheck</a>
     </div>
 
-    <ul class="nav navbar-top-links navbar-right">
-      <li><a ng-click="logout()">Logout</a></li>
-    </ul>
-
     <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
+        <div class="sidebar-nav navbar-collapse" ng-class="collapseNavbar ? 'collapse' : ''">
             <ul class="nav" id="side-menu">
                 <li>
                     <a ui-sref="dashboard.review" ui-sref-active="active"><i class="fa fa-fw fa-check"></i> Review</a>
@@ -36,8 +32,11 @@
                 <li>
                     <a ui-sref="dashboard.review"><i class="fa fa-fw fa-gear"></i> Settings</a>
                 </li>
-
             </ul>
         </div>
     </div>
+
+    <ul class="nav navbar-top-links navbar-right" ng-hide="collapseNavbar">
+      <li ng-class="collapseNavbar ? '' : 'responsive-top-link'"><a ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i> Sign out</a></li>
+    </ul>
 </nav>
