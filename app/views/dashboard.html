@@ -1,3 +1,10 @@
 <div ng-include="'views/partials/navbar.html'"></div>
-    <div id="page-wrapper" ui-view></div>
+    <div id="page-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 ng-bind="$state.current.data.pageTitle" class="page-header"></h1>
+          </div>
+        </div>
+        <div ui-view></div>
+    </div>
 </div>

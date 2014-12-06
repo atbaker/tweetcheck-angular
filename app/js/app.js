@@ -14,7 +14,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/login.html',
       controller: 'LoginCtrl',
       data: {
-        pageTitle: 'login'
+        pageTitle: 'Login'
       }
     })
 
@@ -31,7 +31,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/tweet-list.html',
       controller: 'TweetListCtrl',
       data: {
-        pageTitle: 'dashboard'
+        pageTitle: 'Review tweets'
       },
       resolve: {
         tweets: function(Tweet) {
@@ -54,7 +54,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/tweet-history.html',
       controller: 'TweetHistoryCtrl',
       data: {
-        pageTitle: 'tweet history'
+        pageTitle: 'Tweet history'
       },
       resolve: {
         tweets: function(Tweet) {
@@ -68,7 +68,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/action-history.html',
       controller: 'ActionHistoryCtrl',
       data: {
-        pageTitle: 'action history'
+        pageTitle: 'Activity log'
       },
       resolve: {
         activity: function(Action) {
@@ -82,7 +82,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/detail.html',
       controller: 'DetailCtrl',
       data: {
-        pageTitle: 'view tweet'
+        pageTitle: 'View tweet'
       },
       resolve: {
         tweet: function($stateParams, Tweet) {
@@ -110,7 +110,7 @@ angular.module('tweetCheck', [
       url: '/new',
       templateUrl: '/views/compose.html',
       data: {
-        pageTitle: 'new tweet',
+        pageTitle: 'Compose new tweet',
         newTweet: true
       }
     })
@@ -120,7 +120,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/compose.html',
       controller: 'EditCtrl',
       data: {
-        pageTitle: 'edit tweet',
+        pageTitle: 'Edit tweet',
         newTweet: false
       },
       resolve: {
@@ -138,7 +138,7 @@ angular.module('tweetCheck', [
       templateUrl: '/views/authorize.html',
       controller: 'AuthorizeCtrl',
       data: {
-        pageTitle: 'authorize'
+        pageTitle: 'Authorize'
       }
     });
 
