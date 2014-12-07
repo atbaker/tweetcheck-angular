@@ -64,7 +64,7 @@ angular.module('tweetCheck.controllers', [])
     
     var remaining = 140;
     var splitBody = body.split(' ');
-    console.log(splitBody);
+
     if (splitBody.length > 1) {
       remaining -= (splitBody.length - 1);
     }
@@ -75,7 +75,7 @@ angular.module('tweetCheck.controllers', [])
       } else if (splitBody[i].substring(0, 8) === 'https://' && splitBody[i].length > shortUrlLengthHttps) {
         remaining -= shortUrlLengthHttps;
       } else {
-        remaining -= Math.max(splitBody[i].length);
+        remaining -= splitBody[i].length;
       }
     }
     return remaining;
