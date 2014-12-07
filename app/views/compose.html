@@ -4,7 +4,7 @@
 
       <div class="form-group" ng-class="composeForm.handle.$invalid && !composeForm.handle.$pristine ? 'has-error' : ''">
         <label class="control-label" for="InputHandle">Handle {{tweet.id}}</label>
-        <select class="form-control" id="InputHandle" ng-model="tweet.handle" ng-options="handle.id as handle.name_with_organization for handle in handles.results" required></select>
+        <select class="form-control" id="InputHandle" ng-model="tweet.handle" ng-options="handle.id as handle.name_with_organization for handle in handles.results" ng-disabled="disableHandle" required></select>
       </div>
 
       <div class="form-group" ng-class="composeForm.body.$invalid && !composeForm.body.$pristine ? 'has-error' : ''">

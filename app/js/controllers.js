@@ -54,6 +54,13 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.tweet = new Tweet();
 
+  // This is necessary because angular-ui-router won't force resolves defined
+  // in the state to be resolved before loading the controller on page refresh
+  if (handles.hasOwnProperty('results') && handles.results.length === 1) {
+    $scope.disableHandle = true;
+    $scope.tweet.handle = handles.results[0].id;
+  }
+
   $scope.getCharacterCount = function(body) {
     var shortUrlLength = 22;
     var shortUrlLengthHttps = 23;
