@@ -27,15 +27,15 @@ angular.module('tweetCheck', [
     })
 
     .state('dashboard.review', {
-      url: '/review',
+      url: '/review?page',
       templateUrl: '/views/tweet-list.html',
       controller: 'TweetListCtrl',
       data: {
         pageTitle: 'Review tweets'
       },
       resolve: {
-        tweets: function(Tweet) {
-          return Tweet.query();
+        tweets: function($stateParams, Tweet) {
+          return Tweet.query($stateParams);
         },
         activity: function(Action) {
           return Action.query();

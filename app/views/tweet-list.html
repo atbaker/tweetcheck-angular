@@ -11,6 +11,13 @@
         <div ng-include="'views/partials/tweet-approve-buttons.html'"></div>
       </div>
     </div>
+
+    <nav>
+      <ul class="pager">
+        <li ng-if="tweets.previous" class="previous"><a ui-sref="dashboard.review({page: tweets.previous.slice(-1)})"><span aria-hidden="true">&larr;</span> Older</a></li>
+        <li ng-if="tweets.next" class="next"><a ui-sref="dashboard.review({page: tweets.next.slice(-1)})">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </nav>
   </div>
 
   <div class="col-lg-4">
