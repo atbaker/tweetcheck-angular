@@ -16,9 +16,9 @@
         <tr ng-repeat="item in tweets.results">
           <td><a ui-sref="dashboard.detail({id: item.id})">{{item.body | summarize:true}}</a></td>
           <td>{{item.screen_name}}</td>
-          <td>{{item.created | date:'medium'}}</td>
+          <td>{{item.created | date:'short'}}</td>
           <td>{{item.author}}</td>
-          <td>{{item.last_modified | date:'medium'}}</td>
+          <td>{{item.last_modified | date:'short'}}</td>
           <td>{{item.last_editor}}</td>
           <td><a ng-href="https://twitter.com/{{item.screen_name}}/status/{{item.twitter_id}}">Click here</a></td>
         </tr>
