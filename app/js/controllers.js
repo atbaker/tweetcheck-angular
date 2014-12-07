@@ -89,8 +89,8 @@ angular.module('tweetCheck.controllers', [])
   };
 
   $scope.save = function(tweet) {
-    var saveSuccess = function() {
-      $state.go('dashboard.review');
+    var saveSuccess = function(value) {
+      $state.go('dashboard.detail', {id: value.id});
     };
 
     if (tweet.id !== undefined) {
