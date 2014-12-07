@@ -3,6 +3,10 @@
     margin-right: 0 !important;
 }
 
+.character-count {
+    margin-right: 5px;
+}
+
 .card-heading {
     margin-left: 60px;
 }

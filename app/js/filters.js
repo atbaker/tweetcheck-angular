@@ -20,28 +20,4 @@ angular.module('tweetCheck.filters', [])
 
         return value + (' …');
     };
-})
-
-.filter('remainingCharacterCount', function() {
-    return function (body) {
-        var shortUrlLength = 22;
-        var shortUrlLengthHttps = 23;
-
-        if (body === undefined) {
-          return 140;
-        }
-        var splitBody = body.split(' ');
-        var remaining = 140;
-
-        for (var i=0; i<splitBody.length; i++) {
-          if (splitBody[i].substring(0, 7) === 'http://' && splitBody[i].length > shortUrlLength) {
-            remaining -= shortUrlLength;
-          } else if (splitBody[i].substring(0, 8) === 'https://' && splitBody[i].length > shortUrlLengthHttps) {
-            remaining -= shortUrlLengthHttps;
-          } else {
-            remaining -= Math.max(splitBody[i].length, 1);
-          }
-        }
-        return remaining;
-    };
 });

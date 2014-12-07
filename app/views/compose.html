@@ -1,20 +1,26 @@
 <div class="row">
   <div class="col-lg-8">
-    <form role="form" name="composeForm">
-      <div class="form-group">
-        <label for="InputHandle">Handle</label>
+    <form role="form" name="composeForm" ng-submit="save(tweet)" novalidate>
+
+      <div class="form-group" ng-class="composeForm.handle.$invalid && !composeForm.handle.$pristine ? 'has-error' : ''">
+        <label class="control-label" for="InputHandle">Handle {{tweet.id}}</label>
         <select class="form-control" id="InputHandle" ng-model="tweet.handle" ng-options="handle.id as handle.name_with_organization for handle in handles.results" required></select>
       </div>
-      <div class="form-group">
-        <label for="InputBody">Body</label>
+
+      <div class="form-group" ng-class="composeForm.body.$invalid && !composeForm.body.$pristine ? 'has-error' : ''">
+        <label class="control-label" for="InputBody">Body</label>
         <textarea class="form-control" rows="3" name="body" id="InputBody" ng-model="tweet.body" required></textarea>
-        <p class="pull-right">{{ tweet.body | remainingCharacterCount }}</p>
       </div>
 
-      <button class="btn btn-primary" ng-click="save(tweet)">Save</button>
       <a ng-if="newTweet" ui-sref="dashboard.review" class="btn btn-default">Cancel</a>
       <button ng-if="!newTweet" class="btn btn-danger" ng-click="reject(tweet)">Reject</button>
-      <button class="btn btn-success" ng-click="publish(tweet)">Save and post</button>
+
+      <div class="pull-right">
+        <span class="character-count" ng-bind="getCharacterCount(tweet.body)" ng-style="getCharacterCount(tweet.body) < 0 ? {'color': 'red'} : ''"></span>
+        <button class="btn btn-primary" type="submit" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0">Save</button>
+        <button class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0">Save and post</button>
+      </div>
+
     </form>
   </div>
 </div>
