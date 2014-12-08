@@ -4,7 +4,11 @@ angular.module('tweetCheck.controllers', [])
 
 .controller('LoginCtrl', function($scope, AuthService) {
   $scope.login = function(user) {
-    AuthService.login(user.email, user.password);
+    AuthService.login(user.email, user.password, function() {
+      $scope.loginForm.$setPristine();
+    }, function(error) {
+      $scope.loginError = error;
+    });
   };
 })
 

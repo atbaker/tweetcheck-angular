@@ -3,13 +3,13 @@
     <form role="form" name="composeForm" ng-submit="save(tweet)" novalidate>
 
       <div class="form-group" ng-class="composeForm.handle.$invalid && !composeForm.handle.$pristine ? 'has-error' : ''">
-        <label class="control-label" for="InputHandle">Handle {{tweet.id}}</label>
-        <select class="form-control" id="InputHandle" ng-model="tweet.handle" ng-options="handle.id as handle.name_with_organization for handle in handles.results" ng-disabled="disableHandle" required></select>
+        <label class="control-label" for="inputHandle">Handle {{tweet.id}}</label>
+        <select class="form-control" name="handle" id="inputHandle" ng-model="tweet.handle" ng-options="handle.id as handle.name_with_organization for handle in handles.results" ng-disabled="disableHandle" required></select>
       </div>
 
       <div class="form-group" ng-class="composeForm.body.$invalid && !composeForm.body.$pristine ? 'has-error' : ''">
-        <label class="control-label" for="InputBody">Body</label>
-        <textarea class="form-control" rows="3" name="body" id="InputBody" ng-model="tweet.body" required></textarea>
+        <label class="control-label" for="inputBody">Body</label>
+        <textarea class="form-control" rows="3" name="body" id="inputBody" ng-model="tweet.body" required></textarea>
       </div>
 
       <a ng-if="newTweet" ui-sref="dashboard.review" class="btn btn-default">Cancel</a>

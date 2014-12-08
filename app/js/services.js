@@ -44,7 +44,7 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 .factory('AuthService', function($rootScope, Handle, $http, $state, $cookieStore, $q, User, $window) {
   var authService = {};
 
-  authService.login = function(username, password) {
+  authService.login = function(username, password, success, failure) {
     var self = this;
     $http.post('/api-token-auth/',
       {username: username,
@@ -57,8 +57,12 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
       $window.sessionStorage['token'] = data.token;
 
       self.prepareScope(data.token, function() {
+        success();
         $state.go('dashboard.review');
       });
+    })
+    .error(function(data, status, headers) {
+      failure(data.non_field_errors[0]);
     });
   };
 
