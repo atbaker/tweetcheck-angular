@@ -1,2 +1,5 @@
-<button ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger"><span class="fa fa-remove"></span> Reject</button>
-<button ng-click="approveTweet(tweet)" type="button" class="btn btn-success"><span class="fa fa-check"></span> Post</button>
+<div ng-switch on="user.is_approver">
+    <a ui-sref="dashboard.detail({id: tweet.id})" class="btn btn-default"><span class="fa fa-fw fa-history"></span> View activity</a>
+    <button ng-switch-when="true" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger"><span class="fa fa-fw fa-remove"></span> Reject</button>
+    <button ng-switch-when="true" ng-click="approveTweet(tweet)" type="button" class="btn btn-success"><span class="fa fa-fw fa-check"></span> Post</button>
+</div>

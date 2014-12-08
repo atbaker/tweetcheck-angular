@@ -8,9 +8,11 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('DashboardCtrl', function($scope, AuthService, Tweet) {
-  $scope.logout = AuthService.logout;
+.controller('LogoutCtrl', function(AuthService) {
+  AuthService.logout();
+})
 
+.controller('DashboardCtrl', function($scope, Tweet) {
   $scope.approveTweet = function(tweet) {
     tweet.status = 1;
     Tweet.update(tweet);

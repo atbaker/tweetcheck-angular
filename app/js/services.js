@@ -12,8 +12,8 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 
 .factory('Handle', function($resource) {
   return $resource('api/handles/:id', {id: '@id'}, {
-      query: {method: 'GET', cache: true, isArray: false},
-      queryObject: {method: 'GET', cache: true, transformResponse: function(data, headers) {
+      query: {method: 'GET', isArray: false},
+      queryObject: {method: 'GET', transformResponse: function(data, headers) {
         var handles = angular.fromJson(data).results;
         var handleObject = {};
 
@@ -34,21 +34,38 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   });
 })
 
+.factory('User', function($resource) {
+  return $resource('api/users/:id', {id: '@id'}, {
+    query: {method: 'GET', isArray: false}
+  });
+})
+
 // Authentication service
-.factory('AuthService', function($http, $state, $cookieStore, $window) {
+.factory('AuthService', function($rootScope, $http, $state, $cookieStore, User, $window) {
   var authService = {};
 
   authService.login = function(username, password) {
+    var self = this;
     $http.post('/api-token-auth/',
       {username: username,
        password: password}
     )
     .success(function(data, status, headers) {
       $cookieStore.put('token', data.token);
-      $state.go('dashboard.review');
 
       // Store the token in our session for easy access
       $window.sessionStorage['token'] = data.token;
+
+      self.setPermissions(data.token, function() {
+        $state.go('dashboard.review');
+      });
+    });
+  };
+
+  authService.setPermissions = function(token, callback) {
+    User.get({token: token}, function(value) {
+      $rootScope.user = value.results[0];
+      typeof callback === 'function' && callback();
     });
   };
 
@@ -60,20 +77,17 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   };
 
   authService.loadToken = function() {
-    if ($window.sessionStorage.hasOwnProperty('token')) {
-      return true;
+    if (!$window.sessionStorage.hasOwnProperty('token')) {
+      var storedToken = $cookieStore.get('token');
+      if (typeof storedToken === 'undefined') {
+        $state.go('login');
+        return;
+      } else {
+        $window.sessionStorage['token'] = storedToken;
+      }
     }
 
-    var storedToken = $cookieStore.get('token');
-    if (typeof storedToken === 'undefined') {
-      $state.go('login');
-      return false;
-    } else {
-      $window.sessionStorage['token'] = storedToken;
-      return true;
-    }
-
-    return false;
+    return $window.sessionStorage['token'];
   };
 
   return authService;

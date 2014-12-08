@@ -18,6 +18,11 @@ angular.module('tweetCheck', [
       }
     })
 
+    .state('logout', {
+      url: "/logout",
+      controller: 'LogoutCtrl'
+    })
+
     // setup an abstract state for the tabs directive
     .state('dashboard', {
       url: "/dashboard",
@@ -145,9 +150,12 @@ angular.module('tweetCheck', [
   $urlRouterProvider.otherwise('/dashboard/review');
 })
 
-.run(function ($rootScope, $state, $stateParams, Handle) {
+.run(function ($rootScope, $state, $stateParams, Handle, AuthService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+
+  var token = AuthService.loadToken();
+  AuthService.setPermissions(token);
 
   // The handle metadata probably won't change during a given session
   // save us some time by pre-loading it at run
@@ -167,7 +175,7 @@ angular.module('tweetCheck', [
         AuthService = $injector.get('AuthService');
       }
 
-      if (config.url.indexOf('api/') !== -1 && AuthService.loadToken()) {
+      if (config.url.indexOf('api/') !== -1) {
         config.headers['Authorization'] = 'Token ' + $window.sessionStorage['token'];
       }
 
