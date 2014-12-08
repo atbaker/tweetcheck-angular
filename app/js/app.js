@@ -150,16 +150,15 @@ angular.module('tweetCheck', [
   $urlRouterProvider.otherwise('/dashboard/review');
 })
 
-.run(function ($rootScope, $state, $stateParams, Handle, AuthService) {
+.run(function ($rootScope, $state, $stateParams, AuthService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
 
   var token = AuthService.loadToken();
-  AuthService.setPermissions(token);
 
-  // The handle metadata probably won't change during a given session
-  // save us some time by pre-loading it at run
-  $rootScope.handleObject = Handle.queryObject();
+  if (typeof token !== 'undefined') {
+    AuthService.prepareScope(token);
+  }
 })
 
 .config(function($resourceProvider) {

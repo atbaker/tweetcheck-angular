@@ -41,7 +41,7 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 })
 
 // Authentication service
-.factory('AuthService', function($rootScope, $http, $state, $cookieStore, User, $window) {
+.factory('AuthService', function($rootScope, Handle, $http, $state, $cookieStore, $q, User, $window) {
   var authService = {};
 
   authService.login = function(username, password) {
@@ -56,16 +56,9 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
       // Store the token in our session for easy access
       $window.sessionStorage['token'] = data.token;
 
-      self.setPermissions(data.token, function() {
+      self.prepareScope(data.token, function() {
         $state.go('dashboard.review');
       });
-    });
-  };
-
-  authService.setPermissions = function(token, callback) {
-    User.get({token: token}, function(value) {
-      $rootScope.user = value.results[0];
-      typeof callback === 'function' && callback();
     });
   };
 
@@ -74,6 +67,8 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
     $state.go('login');
 
     delete $window.sessionStorage['token'];
+    delete $rootScope.user;
+    delete $rootScope.handleObject;
   };
 
   authService.loadToken = function() {
@@ -88,6 +83,23 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
     }
 
     return $window.sessionStorage['token'];
+  };
+
+  authService.prepareScope = function(token, callback) {
+    var users = User.get({token: token}, function(value) {
+      $rootScope.user = value.results[0];
+    });
+    var handles = Handle.queryObject({}, function(value) {
+      $rootScope.handleObject = value;
+    });
+
+    $q.all([users, handles]).then(function() {
+      if (typeof callback === 'function') {
+        callback();
+      } else {
+        return;
+      }
+    });
   };
 
   return authService;
