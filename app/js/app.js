@@ -154,8 +154,12 @@ angular.module('tweetCheck', [
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
 
-  var token = AuthService.loadToken();
+  $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+    $rootScope.$previousState = from;
+  });
 
+  // Load in our auth token (if available)
+  var token = AuthService.loadToken();
   if (typeof token !== 'undefined') {
     AuthService.prepareScope(token);
   }

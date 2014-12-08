@@ -16,7 +16,7 @@ angular.module('tweetCheck.controllers', [])
   AuthService.logout();
 })
 
-.controller('DashboardCtrl', function($scope, Tweet) {
+.controller('DashboardCtrl', function() {
 })
 
 .controller('AuthorizeCtrl', function($scope, $http) {
@@ -81,7 +81,7 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('ComposeCtrl', function($scope, $state, handles, Tweet) {
+.controller('ComposeCtrl', function($scope, $rootScope, $state, handles, Tweet) {
   $scope.newTweet = $state.current.data.newTweet;
   $scope.handles = handles;
 
@@ -121,7 +121,13 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.save = function(tweet) {
     var saveSuccess = function(value) {
-      $state.go('dashboard.detail', {id: value.id});
+      if (!$scope.newTweet && $rootScope.$previousState.name !== '') {
+        if ($rootScope.$previousState.name === 'dashboard.review') {
+          $state.go('dashboard.review');
+        } else {
+          $state.go('dashboard.detail', {id: value.id});
+        }
+      }
     };
 
     if (tweet.id !== undefined) {
