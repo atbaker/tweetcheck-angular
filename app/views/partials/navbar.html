@@ -32,11 +32,15 @@
                 <li>
                     <a ui-sref="dashboard.review"><i class="fa fa-fw fa-gear"></i> Settings</a>
                 </li>
+                <li class="visible-xs-block">
+                    <a ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                </li>
             </ul>
         </div>
     </div>
 
-    <ul class="nav navbar-top-links navbar-right" ng-hide="collapseNavbar">
-      <li ng-class="collapseNavbar ? '' : 'responsive-top-link'"><a ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i> Sign out</a></li>
+    <ul class="nav navbar-nav navbar-top-links navbar-right" ng-hide="collapseNavbar">
+      <li class="hidden-xs"><p class="navbar-text">Hello, {{user.email_without_domain}}</p></li>
+      <li class="hidden-xs logout-link"><a ui-sref="logout"><i class="fa fa-fw fa-sign-out"></i> Sign out</a></li>
     </ul>
 </nav>
