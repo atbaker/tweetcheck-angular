@@ -40,7 +40,7 @@ angular.module('tweetCheck', [
       },
       resolve: {
         tweets: function($stateParams, Tweet) {
-          return Tweet.query($stateParams);
+          return Tweet.query({status: 0, page: $stateParams.page}).$promise;
         },
         activity: function(Action) {
           return Action.query();
@@ -63,7 +63,7 @@ angular.module('tweetCheck', [
       },
       resolve: {
         tweets: function(Tweet) {
-          return Tweet.queryApproved();
+          return Tweet.queryApproved().$promise;
         }
       }
     })
@@ -77,7 +77,7 @@ angular.module('tweetCheck', [
       },
       resolve: {
         activity: function(Action) {
-          return Action.query();
+          return Action.query().$promise;
         }
       }
     })
@@ -91,7 +91,7 @@ angular.module('tweetCheck', [
       },
       resolve: {
         tweet: function($stateParams, Tweet) {
-          return Tweet.get({id: $stateParams.id});
+          return Tweet.get({id: $stateParams.id}).$promise;
         },
         activity: function($stateParams, Action) {
           return Action.query({tweet_id: $stateParams.id});
@@ -106,7 +106,7 @@ angular.module('tweetCheck', [
       controller: 'ComposeCtrl',
       resolve: {
         handles: function(Handle) {
-          return Handle.query();
+          return Handle.query().$promise;
         }
       }
     })
@@ -130,10 +130,10 @@ angular.module('tweetCheck', [
       },
       resolve: {
         tweet: function($stateParams, Tweet) {
-          return Tweet.get({id: $stateParams.id});
+          return Tweet.get({id: $stateParams.id}).$promise;
         },
         activity: function($stateParams, Action) {
-          return Action.query({tweet_id: $stateParams.id});
+          return Action.query({tweet_id: $stateParams.id}).$promise;
         }
       }
     })

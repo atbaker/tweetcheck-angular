@@ -17,15 +17,6 @@ angular.module('tweetCheck.controllers', [])
 })
 
 .controller('DashboardCtrl', function($scope, Tweet) {
-  $scope.approveTweet = function(tweet) {
-    tweet.status = 1;
-    Tweet.update(tweet);
-  };
-
-  $scope.rejectTweet = function(tweet) {
-    tweet.status = -1;
-    Tweet.update(tweet);
-  };
 })
 
 .controller('AuthorizeCtrl', function($scope, $http) {
@@ -36,9 +27,29 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('TweetListCtrl', function($scope, tweets, activity) {
+.controller('TweetListCtrl', function($scope, tweets, activity, Tweet) {
   $scope.tweets = tweets;
   $scope.activity = activity;
+
+  $scope.updateTweet = function(tweet) {
+    Tweet.update(tweet, function(value) {
+      for (var i=0; i<$scope.tweets.results.length; i++) {
+        if (value.id === $scope.tweets.results[i].id) {
+          angular.extend($scope.tweets.results[i], value);
+        }
+      }
+    });
+  };
+
+  $scope.approveTweet = function(tweet) {
+    tweet.status = 1;
+    $scope.updateTweet(tweet);
+  };
+
+  $scope.rejectTweet = function(tweet) {
+    tweet.status = -1;
+    $scope.updateTweet(tweet);
+  };
 })
 
 .controller('TweetHistoryCtrl', function($scope, tweets) {
@@ -49,9 +60,25 @@ angular.module('tweetCheck.controllers', [])
   $scope.activity = activity;
 })
 
-.controller('DetailCtrl', function($scope, $stateParams, tweet, activity) {
+.controller('DetailCtrl', function($scope, tweet, activity, Tweet) {
   $scope.tweet = tweet;
   $scope.activity = activity;
+
+  $scope.updateTweet = function(tweet) {
+    Tweet.update(tweet, function(value) {
+      $scope.tweet = value;
+    });
+  };
+
+  $scope.approveTweet = function(tweet) {
+    tweet.status = 1;
+    $scope.updateTweet(tweet);
+  };
+
+  $scope.rejectTweet = function(tweet) {
+    tweet.status = -1;
+    $scope.updateTweet(tweet);
+  };
 })
 
 .controller('ComposeCtrl', function($scope, $state, handles, Tweet) {
@@ -60,9 +87,7 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.tweet = new Tweet();
 
-  // This is necessary because angular-ui-router won't force resolves defined
-  // in the state to be resolved before loading the controller on page refresh
-  if (handles.hasOwnProperty('results') && handles.results.length === 1) {
+  if (handles.results.length === 1) {
     $scope.disableHandle = true;
     $scope.tweet.handle = handles.results[0].id;
   }
