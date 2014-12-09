@@ -1,4 +1,4 @@
-<div class="panel" ng-class="{'panel-default': tweet.status === 0, 'panel-success': tweet.status === 1, 'panel-danger': tweet.status === -1}">
+<div class="panel" ng-attr-id="{{'tweet-' + tweet.id}}"ng-class="{'panel-default': tweet.status === 0, 'panel-success': tweet.status === 1, 'panel-danger': tweet.status === -1}">
   <div class="panel-heading">
     <ul class="list-inline">
         <li ng-switch on="tweet.status">

@@ -27,9 +27,15 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('TweetListCtrl', function($scope, tweets, activity, Tweet, Realtime) {
+.controller('TweetListCtrl', function($scope, tweets, activity, $stateParams, $location, $anchorScroll, Tweet, Realtime) {
   $scope.tweets = tweets;
   $scope.activity = activity;
+
+  if ($stateParams.scrollTweet !== null) {
+    console.log('scrolling');
+    $location.hash('tweet-' + $stateParams.scrollTweet);
+    $anchorScroll();
+  }
 
   $scope.updateTweet = function(tweet) {
     Tweet.update(tweet, function(value) {
@@ -126,8 +132,15 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.save = function(tweet) {
     var saveSuccess = function(value) {
-      if (!$scope.newTweet && $rootScope.$previousState.name === 'dashboard.review' && value.status === 0) {
-        $state.go('dashboard.review');
+      // Slightly complicated routing logic here - to be codified in tests
+      // new and save -> review#id
+      // new and post -> detail
+      // edit save from review -> review#id
+      // edit post from review -> detail
+      // edit save from detail -> detail
+      // edit post from detail -> detail
+      if (value.status === 0 && ($scope.newTweet || (!$scope.newTweet && $rootScope.$previousState.name === 'dashboard.review'))) {
+        $state.go('dashboard.review', {scrollTweet: value.id});
       } else {
         $state.go('dashboard.detail', {id: value.id});
       }

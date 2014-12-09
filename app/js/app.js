@@ -38,6 +38,9 @@ angular.module('tweetCheck', [
       data: {
         pageTitle: 'Review tweets'
       },
+      params: {
+        scrollTweet: null
+      },
       resolve: {
         tweets: function($stateParams, Tweet) {
           return Tweet.query({status: 0, page: $stateParams.page}).$promise;
@@ -150,13 +153,15 @@ angular.module('tweetCheck', [
   $urlRouterProvider.otherwise('/dashboard/review');
 })
 
-.run(function ($rootScope, $state, $stateParams, AuthService) {
+.run(function ($rootScope, $state, $stateParams, $anchorScroll, AuthService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
 
   $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
     $rootScope.$previousState = from;
   });
+
+  $anchorScroll.yOffset = 20;
 
   // Load in our auth token (if available)
   var token = AuthService.loadToken();
