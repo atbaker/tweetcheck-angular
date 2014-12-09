@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-8">
-    <form role="form" name="composeForm" ng-submit="save(tweet)" novalidate>
+    <form role="form" name="composeForm" novalidate>
 
       <div class="form-group" ng-class="composeForm.handle.$invalid && !composeForm.handle.$pristine ? 'has-error' : ''">
         <label class="control-label" for="inputHandle">Handle</label>
@@ -17,7 +17,7 @@
 
       <div class="pull-right">
         <span class="character-count" ng-bind="getCharacterCount(tweet.body)" ng-style="getCharacterCount(tweet.body) < 0 ? {'color': 'red'} : ''"></span>
-        <button class="btn btn-primary" type="submit" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0">Save</button>
+        <button class="btn btn-primary" type="submit" ng-click="save(tweet)"ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0">Save</button>
         <button ng-if="user.is_approver" class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0">Save and post</button>
       </div>
 

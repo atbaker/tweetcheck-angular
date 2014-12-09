@@ -126,12 +126,10 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.save = function(tweet) {
     var saveSuccess = function(value) {
-      if (!$scope.newTweet && $rootScope.$previousState.name !== '') {
-        if ($rootScope.$previousState.name === 'dashboard.review') {
-          $state.go('dashboard.review');
-        } else {
-          $state.go('dashboard.detail', {id: value.id});
-        }
+      if (!$scope.newTweet && $rootScope.$previousState.name === 'dashboard.review' && value.status === 0) {
+        $state.go('dashboard.review');
+      } else {
+        $state.go('dashboard.detail', {id: value.id});
       }
     };
 
