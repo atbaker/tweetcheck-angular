@@ -40,6 +40,24 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   });
 })
 
+.factory('Realtime', function($rootScope) {
+  var realtime = {};
+
+  var socket = io('/');
+  socket.emit('subscribeToOrg', {organization: $rootScope.user.organization});
+
+  socket.on('tweet', function (data) {
+    console.log(data);
+    realtime.callback(data.message);
+  });
+
+  realtime.setCallback = function(callback) {
+    this.callback = callback;
+  };
+
+  return realtime;
+})
+
 // Authentication service
 .factory('AuthService', function($rootScope, Handle, $http, $state, $cookieStore, $q, User, $window) {
   var authService = {};

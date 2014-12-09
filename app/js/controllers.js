@@ -27,7 +27,7 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('TweetListCtrl', function($scope, tweets, activity, Tweet) {
+.controller('TweetListCtrl', function($scope, tweets, activity, Tweet, Realtime) {
   $scope.tweets = tweets;
   $scope.activity = activity;
 
@@ -50,6 +50,11 @@ angular.module('tweetCheck.controllers', [])
     tweet.status = -1;
     $scope.updateTweet(tweet);
   };
+
+  Realtime.setCallback(function(message) {
+    $scope.message = message;
+    $scope.$apply();
+  });
 })
 
 .controller('TweetHistoryCtrl', function($scope, tweets) {
