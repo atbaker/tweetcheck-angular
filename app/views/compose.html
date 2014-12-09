@@ -13,12 +13,12 @@
       </div>
 
       <a ng-if="newTweet" ui-sref="dashboard.review" class="btn btn-default">Cancel</a>
-      <button ng-if="!newTweet && user.is_approver" class="btn btn-danger" ng-click="reject(tweet)">Reject</button>
+      <button ng-if="!newTweet && user.is_approver" class="btn btn-danger" ng-click="reject(tweet)" ng-disabled="processing">Reject</button>
 
       <div class="pull-right">
         <span class="character-count" ng-bind="getCharacterCount(tweet.body)" ng-style="getCharacterCount(tweet.body) < 0 ? {'color': 'red'} : ''"></span>
-        <button class="btn btn-primary" type="submit" ng-click="save(tweet)"ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0">Save</button>
-        <button ng-if="user.is_approver" class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0">Save and post</button>
+        <button class="btn btn-primary" type="submit" ng-click="save(tweet)"ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save</button>
+        <button ng-if="user.is_approver" class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save and post</button>
       </div>
 
     </form>

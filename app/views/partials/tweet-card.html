@@ -10,7 +10,7 @@
             <h5 ng-switch-when="-1">Rejected by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></h5>
         </li>
 
-        <li ng-if="tweet.status === 0" class="pull-right"><a ui-sref="dashboard.compose.edit({id: tweet.id})" class="btn btn-small btn-primary"><span class="fa fa-pencil-square"></span> Edit</a></li>
+        <li ng-if="tweet.status === 0" class="pull-right"><a ui-sref="dashboard.compose.edit({id: tweet.id})" class="btn btn-small btn-primary" ng-class="{'disabled': processing || processingTracker[tweet.id]}"><span class="fa fa-pencil-square"></span> Edit</a></li>
         <li ng-if="tweet.status === 1" class="pull-right"><a ng-href="https://twitter.com/{{tweet.screen_name}}/status/{{tweet.twitter_id}}" target="_blank" class="btn btn-small btn-default"><span class="fa fa-twitter"></span> View on Twitter</a></li>
     </ul>
   </div>
@@ -34,8 +34,8 @@
   <div class="panel-footer">
     <div ng-switch on="user.is_approver">
         <a ui-sref="dashboard.detail({id: tweet.id})" class="btn btn-default"><span class="fa fa-fw fa-history"></span> View activity</a>
-        <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger"><span class="fa fa-fw fa-remove"></span> Reject</button>
-        <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success"><span class="fa fa-fw fa-check"></span> Post</button>
+        <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-remove"></span> Reject</button>
+        <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-check"></span> Post</button>
     </div>
   </div>
 </div>

@@ -31,6 +31,8 @@ angular.module('tweetCheck.controllers', [])
   $scope.tweets = tweets;
   $scope.activity = activity;
 
+  $scope.processingTracker = {};
+
   if ($stateParams.scrollTweet !== null) {
     console.log('scrolling');
     $location.hash('tweet-' + $stateParams.scrollTweet);
@@ -38,23 +40,27 @@ angular.module('tweetCheck.controllers', [])
   }
 
   $scope.updateTweet = function(tweet) {
+    $scope.processingTracker[tweet.id] = true;
     Tweet.update(tweet, function(value) {
       for (var i=0; i<$scope.tweets.results.length; i++) {
         if (value.id === $scope.tweets.results[i].id) {
           angular.extend($scope.tweets.results[i], value);
+          $scope.processingTracker[value.id] = false;
         }
       }
     });
   };
 
   $scope.approveTweet = function(tweet) {
-    tweet.status = 1;
-    $scope.updateTweet(tweet);
+    var tweetUpdate = angular.copy(tweet);
+    tweetUpdate.status = 1;
+    $scope.updateTweet(tweetUpdate);
   };
 
   $scope.rejectTweet = function(tweet) {
-    tweet.status = -1;
-    $scope.updateTweet(tweet);
+    var tweetUpdate = angular.copy(tweet);
+    tweetUpdate.status = -1;
+    $scope.updateTweet(tweetUpdate);
   };
 
   Realtime.setCallback(function(message) {
@@ -74,27 +80,33 @@ angular.module('tweetCheck.controllers', [])
 .controller('DetailCtrl', function($scope, tweet, activity, Tweet) {
   $scope.tweet = tweet;
   $scope.activity = activity;
+  $scope.processing = false;
 
   $scope.updateTweet = function(tweet) {
+    $scope.processing = true;
     Tweet.update(tweet, function(value) {
       $scope.tweet = value;
+      $scope.processing = false;
     });
   };
 
   $scope.approveTweet = function(tweet) {
-    tweet.status = 1;
-    $scope.updateTweet(tweet);
+    var tweetUpdate = angular.copy(tweet);
+    tweetUpdate.status = 1;
+    $scope.updateTweet(tweetUpdate);
   };
 
   $scope.rejectTweet = function(tweet) {
-    tweet.status = -1;
-    $scope.updateTweet(tweet);
+    var tweetUpdate = angular.copy(tweet);
+    tweetUpdate.status = -1;
+    $scope.updateTweet(tweetUpdate);
   };
 })
 
 .controller('ComposeCtrl', function($scope, $rootScope, $state, handles, Tweet) {
   $scope.newTweet = $state.current.data.newTweet;
   $scope.handles = handles;
+  $scope.processing = false;
 
   $scope.tweet = new Tweet();
 
@@ -131,6 +143,8 @@ angular.module('tweetCheck.controllers', [])
   };
 
   $scope.save = function(tweet) {
+    $scope.processing = true;
+
     var saveSuccess = function(value) {
       // Slightly complicated routing logic here - to be codified in tests
       // new and save -> review#id
