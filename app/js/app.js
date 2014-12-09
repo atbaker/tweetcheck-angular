@@ -196,7 +196,7 @@ angular.module('tweetCheck', [
         AuthService = $injector.get('AuthService');
       }
 
-      if (rejection.status === 403 || rejection.status === 0) {
+      if (rejection.status === 403) {
         // Our request 403'd - user needs to login again
         AuthService.logout();
       }
