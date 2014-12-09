@@ -157,6 +157,11 @@ angular.module('tweetCheck.controllers', [])
     tweet.status = 1;
     $scope.save(tweet);
   };
+
+  $scope.reject = function(tweet) {
+    tweet.status = -1;
+    $scope.save(tweet);
+  };
 })
 
 .controller('EditCtrl', function($scope, tweet) {
