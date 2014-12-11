@@ -1,6 +1,6 @@
 /* Filters */
 
-angular.module('tweetCheck.filters', [])
+angular.module('tweetCheck.filters', ['ngSanitize'])
 
 .filter('summarize', function () {
     return function (value, wordwise, max) {
@@ -19,5 +19,19 @@ angular.module('tweetCheck.filters', [])
         }
 
         return value + (' …');
+    };
+})
+
+.filter('linkHashtags', function ($sce) {
+    return function (body) {
+        var words = body.split(' ');
+        for (var i=0; i<words.length; i++) {
+            if (words[i][0] === '#') {
+                var hashtag = words[i];
+                var oldString = body;
+                body = oldString.replace(hashtag, $sce.trustAsHtml('<strong>' + hashtag + '</strong>'));
+            }
+        }
+        return body;
     };
 });

@@ -27,7 +27,7 @@
 
     <div class="row card-body">
         <div class="col-md-12">
-            <p class="lead tweet-body">{{tweet.body}}</p>
+            <p ng-bind-html="tweet.body | linkHashtags" class="lead tweet-body"></p>
         </div>
     </div>
   </div>
