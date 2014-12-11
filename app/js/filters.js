@@ -29,7 +29,8 @@ angular.module('tweetCheck.filters', ['ngSanitize'])
             if (words[i][0] === '#') {
                 var hashtag = words[i];
                 var oldString = body;
-                body = oldString.replace(hashtag, $sce.trustAsHtml('<strong>' + hashtag + '</strong>'));
+                body = oldString.replace(hashtag, $sce.trustAsHtml('<a href="https://twitter.com/hashtag/' + hashtag.substring(1) + '" target="_blank">' + hashtag + '</a>'));
+
             }
         }
         return body;
