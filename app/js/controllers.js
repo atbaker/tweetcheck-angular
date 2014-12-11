@@ -33,11 +33,25 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.processingTracker = {};
 
+  $scope.moreTweets = tweets.next !== null;
+
   if ($stateParams.scrollTweet !== null) {
-    console.log('scrolling');
     $location.hash('tweet-' + $stateParams.scrollTweet);
     $anchorScroll();
   }
+
+  $scope.getMoreTweets = function() {
+    $scope.processingTracker['load-more'] = true;
+    var lastId = $scope.tweets.results[$scope.tweets.results.length - 1].id;
+    Tweet.query({status: 0, since_id: lastId}, function(value) {
+      var currentTweets = $scope.tweets.results;
+      var newList = currentTweets.concat(value.results);
+      $scope.tweets.results = newList;
+
+      $scope.moreTweets = value.next !== null;
+      $scope.processingTracker['load-more'] = false;
+    });
+  };
 
   $scope.updateTweet = function(tweet) {
     $scope.processingTracker[tweet.id] = true;

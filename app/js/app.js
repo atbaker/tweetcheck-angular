@@ -32,7 +32,7 @@ angular.module('tweetCheck', [
     })
 
     .state('dashboard.review', {
-      url: '/review?page',
+      url: '/review',
       templateUrl: '/views/tweet-list.html',
       controller: 'TweetListCtrl',
       data: {
@@ -43,7 +43,7 @@ angular.module('tweetCheck', [
       },
       resolve: {
         tweets: function($stateParams, Tweet) {
-          return Tweet.query({status: 0, page: $stateParams.page}).$promise;
+          return Tweet.query({status: 0}).$promise;
         },
         activity: function(Action) {
           return Action.query();
