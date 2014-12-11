@@ -46,9 +46,8 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   var socket = io('/');
   socket.emit('subscribeToOrg', {organization: $rootScope.user.organization});
 
-  socket.on('tweet', function (data) {
-    console.log(data);
-    realtime.callback(data.message);
+  socket.on('new', function () {
+    realtime.callback();
   });
 
   realtime.setCallback = function(callback) {

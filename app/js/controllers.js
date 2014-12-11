@@ -77,9 +77,10 @@ angular.module('tweetCheck.controllers', [])
     $scope.updateTweet(tweetUpdate);
   };
 
-  Realtime.setCallback(function(message) {
-    $scope.message = message;
-    $scope.$apply();
+  Realtime.setCallback(function() {
+    if (!$scope.moreTweets) {
+      $scope.getMoreTweets();
+    }
   });
 })
 
