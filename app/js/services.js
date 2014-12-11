@@ -46,12 +46,17 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   var socket = io('/');
   socket.emit('subscribeToOrg', {organization: $rootScope.user.organization});
 
-  socket.on('new', function () {
-    realtime.callback();
+  socket.on('new', function() {
+    realtime.newCallback();
   });
 
-  realtime.setCallback = function(callback) {
-    this.callback = callback;
+  socket.on('update', function(message) {
+    realtime.updateCallback(message.id);
+  });
+
+  realtime.setCallbacks = function(newCallback, updateCallback) {
+    this.newCallback = newCallback;
+    this.updateCallback = updateCallback;
   };
 
   return realtime;

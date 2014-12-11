@@ -53,16 +53,18 @@ angular.module('tweetCheck.controllers', [])
     });
   };
 
+  var updateScope = function(updatedTweet) {
+    for (var i=0; i<$scope.tweets.results.length; i++) {
+      if (updatedTweet.id === $scope.tweets.results[i].id) {
+        angular.extend($scope.tweets.results[i], updatedTweet);
+        $scope.processingTracker[updatedTweet.id] = false;
+      }
+    }
+  };
+
   $scope.updateTweet = function(tweet) {
     $scope.processingTracker[tweet.id] = true;
-    Tweet.update(tweet, function(value) {
-      for (var i=0; i<$scope.tweets.results.length; i++) {
-        if (value.id === $scope.tweets.results[i].id) {
-          angular.extend($scope.tweets.results[i], value);
-          $scope.processingTracker[value.id] = false;
-        }
-      }
-    });
+    Tweet.update(tweet, updateScope);
   };
 
   $scope.approveTweet = function(tweet) {
@@ -77,11 +79,17 @@ angular.module('tweetCheck.controllers', [])
     $scope.updateTweet(tweetUpdate);
   };
 
-  Realtime.setCallback(function() {
+  var retrieveNewTweet = function() {
     if (!$scope.moreTweets) {
       $scope.getMoreTweets();
     }
-  });
+  };
+
+  var retrieveUpdatedTweet = function(id) {
+    Tweet.get({id: id}, updateScope);
+  };
+
+  Realtime.setCallbacks(retrieveNewTweet, retrieveUpdatedTweet);
 })
 
 .controller('TweetHistoryCtrl', function($scope, tweets) {
