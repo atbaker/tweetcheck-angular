@@ -33,9 +33,10 @@
   </div>
   <div class="panel-footer">
     <div ng-switch on="user.is_approver">
-        <a ui-sref="dashboard.detail({id: tweet.id})" class="btn btn-default"><span class="fa fa-fw fa-history"></span> View activity</a>
+        <a ng-if="!$state.is('dashboard.detail')" ui-sref="dashboard.detail({id: tweet.id})" class="btn btn-default"><span class="fa fa-fw fa-history"></span> View activity</a>
         <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-remove"></span> Reject</button>
         <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-check"></span> Post</button>
+        <span ng-include="'views/partials/processing-spinner.html'"></span>
     </div>
   </div>
 </div>
