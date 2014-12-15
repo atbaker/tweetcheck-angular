@@ -23,7 +23,6 @@ angular.module('tweetCheck', [
       controller: 'LogoutCtrl'
     })
 
-    // setup an abstract state for the tabs directive
     .state('dashboard', {
       url: "/dashboard",
       abstract: true,
