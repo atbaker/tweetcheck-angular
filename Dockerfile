@@ -11,7 +11,8 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys 7937DFD2AB06298B2293C3187D33FF9D0246
 ENV NODE_VERSION 0.10.33
 ENV NPM_VERSION 2.1.6
 
-RUN apt-get install -y curl git \
+RUN apt-get update \
+    && apt-get install -y curl git \
     && apt-get clean
 
 # Install node and bower
