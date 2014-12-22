@@ -22,6 +22,18 @@ angular.module('tweetCheck', [
   if (typeof token !== 'undefined') {
     AuthService.prepareScope(token);
   }
+
+  // Update moment.js configuration
+  moment.locale('en', {
+      calendar : {
+          lastDay : '[yesterday at] LT',
+          sameDay : '[today at] LT',
+          nextDay : '[tomorrow at] LT',
+          lastWeek : '[last] dddd [at] LT',
+          nextWeek : 'dddd [at] LT',
+          sameElse : 'L'
+      }
+  });
 })
 
 .config(function($resourceProvider) {
