@@ -36,6 +36,6 @@ COPY . /usr/share/nginx/html
 WORKDIR /usr/share/nginx/html
 
 # Install bower dependencies
-RUN bower install --allow-root
+RUN bower install --config.interactive=false --allow-root
 
 EXPOSE 80 443
