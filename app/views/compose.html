@@ -19,21 +19,27 @@
         <span ng-include="'views/partials/processing-spinner.html'"></span>
         <span class="character-count" ng-bind="getCharacterCount(tweet.body)" ng-style="getCharacterCount(tweet.body) < 0 ? {'color': 'red'} : ''"></span>
         <button class="btn btn-primary" type="submit" ng-click="save(tweet)"ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save</button>
-        <button ng-if="user.is_approver" class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save and post</button>
+        <button ng-if="user.is_approver" class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save and post now</button>
       </div>
 
     </form>
   </div>
 
   <div class="col-lg-4">
-    <h3>Post later</h3>
-    <form role="form" name="scheduleForm" novalidate>
+    <h4>Post later</h4>
+    <form ng-submit="schedule(tweet, date, time)" role="form" name="scheduleForm" novalidate>
 
       <div class="form-group">
-        <label class="control-label" for="inputDateTime">Date and time (MM/DD/YYYY hh:mm AM/PM)</label>
-        <input ng-model="tweet.eta" type="datetime" class="form-control" name="eta" id="inputEta" required>
+        <label class="control-label" for="inputDate">Date</label>
+        <input ng-model="date" type="date" class="form-control" name="date" id="inputDate" required>
       </div>
-      <button class="btn btn-primary pull-right" ng-click="schedule(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save and post later</button>
+
+      <div class="form-group">
+        <label class="control-label" for="inputTime">Time</label>
+        <input ng-model="time" type="time" class="form-control" name="time" id="inputTime" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary pull-right" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || (date === undefined || time === undefined) || processing">Save and post later</button>
     </form>
   </div>
 </div>

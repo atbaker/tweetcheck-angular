@@ -200,8 +200,16 @@ angular.module('tweetCheck.controllers', [])
     $scope.save(tweet);
   };
 
-  $scope.schedule = function(tweet) {
+  $scope.schedule = function(tweet, date, time) {
     tweet.status = 3;
+
+    // Create a datetime object from the two fields
+    var tweetDate = moment(date);
+    var tweetTime = moment(time);
+
+    tweetDate.add(tweetTime);
+
+    tweet.eta = tweetDate.toISOString();
     $scope.save(tweet);
   };
 })
