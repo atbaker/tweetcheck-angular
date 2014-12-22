@@ -168,6 +168,16 @@ angular.module('tweetCheck.controllers', [])
   $scope.save = function(tweet) {
     $scope.processing = true;
 
+    // Create a datetime object from the two fields
+    var tweetDate = moment(tweet.etaDate).startOf('day');
+    var tweetTime = moment(tweet.etaTime);
+
+    tweetDate.hour(tweetTime.hour()).minute(tweetTime.minute());
+    tweet.eta = tweetDate.toISOString();
+
+    delete tweet.etaDate;
+    delete tweet.etaTime;
+
     var saveSuccess = function(value) {
       // Slightly complicated routing logic here - to be codified in tests
       // new and save -> review#id
@@ -202,18 +212,16 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.schedule = function(tweet, date, time) {
     tweet.status = 3;
-
-    // Create a datetime object from the two fields
-    var tweetDate = moment(date);
-    var tweetTime = moment(time);
-
-    tweetDate.add(tweetTime);
-
-    tweet.eta = tweetDate.toISOString();
     $scope.save(tweet);
   };
 })
 
 .controller('EditCtrl', function($scope, tweet) {
   $scope.tweet = tweet;
+
+  if (tweet.eta !== null) {
+    var eta = moment(tweet.eta).toDate();
+    tweet.etaDate = eta;
+    tweet.etaTime = eta;
+  }
 });

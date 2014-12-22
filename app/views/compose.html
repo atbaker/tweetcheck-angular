@@ -27,19 +27,19 @@
 
   <div class="col-lg-4">
     <h4>Post later</h4>
-    <form ng-submit="schedule(tweet, date, time)" role="form" name="scheduleForm" novalidate>
+    <form ng-submit="schedule(tweet)" role="form" name="scheduleForm" novalidate>
 
       <div class="form-group">
         <label class="control-label" for="inputDate">Date</label>
-        <input ng-model="date" type="date" class="form-control" name="date" id="inputDate" required>
+        <input ng-model="tweet.etaDate" type="date" class="form-control" name="date" id="inputDate" required>
       </div>
 
       <div class="form-group">
         <label class="control-label" for="inputTime">Time</label>
-        <input ng-model="time" type="time" class="form-control" name="time" id="inputTime" required>
+        <input ng-model="tweet.etaTime" type="time" class="form-control" name="time" id="inputTime" required>
       </div>
 
-      <button type="submit" class="btn btn-primary pull-right" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || (date === undefined || time === undefined) || processing">Save and post later</button>
+      <button type="submit" class="btn btn-primary pull-right" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || (tweet.etaDate === undefined || tweet.etaTime === undefined) || processing">Save and post later</button>
     </form>
   </div>
 </div>
