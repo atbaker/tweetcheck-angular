@@ -1,4 +1,4 @@
-<div class="panel" ng-attr-id="{{'tweet-' + tweet.id}}"ng-class="{'panel-default': tweet.status === 0, 'panel-success': tweet.status === 1, 'panel-danger': tweet.status === -1}">
+<div class="panel" ng-attr-id="{{'tweet-' + tweet.id}}"ng-class="{'panel-default': tweet.status === 0, 'panel-success': tweet.status === 1, 'panel-danger': tweet.status === -1, 'panel-primary': tweet.status === 3}">
   <div class="panel-heading">
     <ul class="list-inline">
         <li>
@@ -38,12 +38,12 @@
         <div ng-switch on="tweet.status" ng-if="!processingTracker[tweet.id]" class="last-action hidden-xs pull-right">
             <div ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Submitted by {{tweet.author}} <span am-time-ago="tweet.created"></span></div>
             <div ng-switch-when="0" ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
-
             <div ng-switch-when="1">Posted by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
-
             <div ng-switch-when="-1">Rejected by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
+            <div ng-switch-when="3">Scheduled by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
         </div>
         <span ng-include="'views/partials/processing-spinner.html'"></span>
+        <div class="clearfix"></div>
     </div>
   </div>
 </div>

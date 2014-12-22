@@ -45,6 +45,26 @@ angular.module('tweetCheck.states', ['ui.router'])
       }
     })
 
+    .state('dashboard.schedule', {
+      url: '/schedule',
+      templateUrl: '/views/tweet-list.html',
+      controller: 'TweetListCtrl',
+      data: {
+        pageTitle: 'Scheduled tweets'
+      },
+      params: {
+        scrollTweet: null
+      },
+      resolve: {
+        tweets: function($stateParams, Tweet) {
+          return Tweet.query({status: 3}).$promise;
+        },
+        activity: function(Action) {
+          return Action.query();
+        }
+      }
+    })
+
     .state('dashboard.history', {
       url: '/history',
       abstract: true,

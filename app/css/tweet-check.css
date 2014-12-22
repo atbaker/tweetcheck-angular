@@ -28,7 +28,8 @@
 }
 
 .last-action {
-    margin-top: 8px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 .action-icon {

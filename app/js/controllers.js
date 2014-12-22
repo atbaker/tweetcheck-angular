@@ -33,8 +33,6 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.processingTracker = {};
 
-  $scope.moreTweets = tweets.next !== null;
-
   if ($stateParams.scrollTweet !== null) {
     $location.hash('tweet-' + $stateParams.scrollTweet);
     $anchorScroll();
