@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in tweets.results">
+        <tr ng-repeat="item in tweets">
           <td><a ui-sref="dashboard.detail({id: item.id})">{{item.body | summarize:true}}</a></td>
           <td>{{item.screen_name}}</td>
           <td>{{item.created | date:'short'}}</td>

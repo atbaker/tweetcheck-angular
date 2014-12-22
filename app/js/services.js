@@ -4,17 +4,15 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 
 .factory('Tweet', function($resource) {
   return $resource('api/tweets/:id', {id: '@id'}, {
-    query: {method: 'GET', isArray: false},
-    queryApproved: {method: 'GET', isArray: false, params: {status: 1}},
+    queryApproved: {method: 'GET', isArray: true, params: {status: 1}},
     update: {method: 'PUT'}
   });
 })
 
 .factory('Handle', function($resource) {
   return $resource('api/handles/:id', {id: '@id'}, {
-      query: {method: 'GET', isArray: false},
       queryObject: {method: 'GET', transformResponse: function(data, headers) {
-        var handles = angular.fromJson(data).results;
+        var handles = angular.fromJson(data);
         var handleObject = {};
 
         for (var i=0; i < handles.length; i++) {
@@ -35,9 +33,7 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 })
 
 .factory('User', function($resource) {
-  return $resource('api/users/:id', {id: '@id'}, {
-    query: {method: 'GET', isArray: false}
-  });
+  return $resource('api/users/:id', {id: '@id'});
 })
 
 .factory('Realtime', function($rootScope) {
@@ -112,8 +108,8 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   };
 
   authService.prepareScope = function(token, callback) {
-    var users = User.get({token: token}, function(value) {
-      $rootScope.user = value.results[0];
+    var users = User.query({token: token}, function(value) {
+      $rootScope.user = value[0];
     });
     var handles = Handle.queryObject({}, function(value) {
       $rootScope.handleObject = value;

@@ -40,23 +40,10 @@ angular.module('tweetCheck.controllers', [])
     $anchorScroll();
   }
 
-  $scope.getMoreTweets = function() {
-    $scope.processingTracker['load-more'] = true;
-    var lastId = $scope.tweets.results[$scope.tweets.results.length - 1].id;
-    Tweet.query({status: 0, since_id: lastId}, function(value) {
-      var currentTweets = $scope.tweets.results;
-      var newList = currentTweets.concat(value.results);
-      $scope.tweets.results = newList;
-
-      $scope.moreTweets = value.next !== null;
-      $scope.processingTracker['load-more'] = false;
-    });
-  };
-
   var updateScope = function(updatedTweet) {
-    for (var i=0; i<$scope.tweets.results.length; i++) {
-      if (updatedTweet.id === $scope.tweets.results[i].id) {
-        angular.extend($scope.tweets.results[i], updatedTweet);
+    for (var i=0; i<$scope.tweets.length; i++) {
+      if (updatedTweet.id === $scope.tweets[i].id) {
+        angular.extend($scope.tweets[i], updatedTweet);
         $scope.processingTracker[updatedTweet.id] = false;
       }
     }
@@ -79,17 +66,17 @@ angular.module('tweetCheck.controllers', [])
     $scope.updateTweet(tweetUpdate);
   };
 
-  var retrieveNewTweet = function() {
-    if (!$scope.moreTweets) {
-      $scope.getMoreTweets();
-    }
+  var refreshTweets = function() {
+    Tweet.query({status: 0}, function(value) {
+      $scope.tweets = value;
+    });
   };
 
   var retrieveUpdatedTweet = function(id) {
     Tweet.get({id: id}, updateScope);
   };
 
-  Realtime.setCallbacks(retrieveNewTweet, retrieveUpdatedTweet);
+  Realtime.setCallbacks(refreshTweets, retrieveUpdatedTweet);
 })
 
 .controller('TweetHistoryCtrl', function($scope, tweets) {
@@ -133,9 +120,9 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.tweet = new Tweet();
 
-  if (handles.results.length === 1) {
+  if (handles.length === 1) {
     $scope.disableHandle = true;
-    $scope.tweet.handle = handles.results[0].id;
+    $scope.tweet.handle = handles[0].id;
   }
 
   $scope.getCharacterCount = function(body) {
