@@ -2,7 +2,7 @@
 
 angular.module('tweetCheck.states', ['ui.router'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('login', {
       url: "/login",
@@ -145,4 +145,5 @@ angular.module('tweetCheck.states', ['ui.router'])
     });
 
   $urlRouterProvider.otherwise('/dashboard/review');
+  $locationProvider.html5Mode(true);
 });
