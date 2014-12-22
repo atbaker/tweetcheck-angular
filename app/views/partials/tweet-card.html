@@ -30,7 +30,10 @@
     <div ng-switch on="user.is_approver">
         <a ng-if="!$state.is('dashboard.detail')" ui-sref="dashboard.detail({id: tweet.id})" class="btn btn-default"><span class="fa fa-fw fa-history"></span> View activity</a>
         <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-remove"></span> Reject</button>
-        <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-check"></span> Post</button>
+        <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]">
+            <span ng-if="tweet.eta === null"><span class="fa fa-fw fa-check"></span> Post now</span>
+            <span ng-if="tweet.eta !== null"><span class="fa fa-fw fa-check"></span> Add to schedule</span>
+        </button>
 
         <div ng-switch on="tweet.status" ng-if="!processingTracker[tweet.id]" class="last-action hidden-xs pull-right">
             <div ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Submitted by {{tweet.author}} <span am-time-ago="tweet.created"></span></div>
