@@ -24,4 +24,16 @@
 
     </form>
   </div>
+
+  <div class="col-lg-4">
+    <h3>Post later</h3>
+    <form role="form" name="scheduleForm" novalidate>
+
+      <div class="form-group">
+        <label class="control-label" for="inputDateTime">Date and time (MM/DD/YYYY hh:mm AM/PM)</label>
+        <input ng-model="tweet.eta" type="datetime" class="form-control" name="eta" id="inputEta" required>
+      </div>
+      <button class="btn btn-primary pull-right" ng-click="schedule(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save and post later</button>
+    </form>
+  </div>
 </div>
