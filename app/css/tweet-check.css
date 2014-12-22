@@ -27,6 +27,10 @@
     margin-bottom: 0;
 }
 
+.last-action {
+    margin-top: 8px;
+}
+
 .action-icon {
     float: left;
     margin-top: 2px;

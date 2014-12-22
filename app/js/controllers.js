@@ -169,11 +169,13 @@ angular.module('tweetCheck.controllers', [])
     $scope.processing = true;
 
     // Create a datetime object from the two fields
-    var tweetDate = moment(tweet.etaDate).startOf('day');
-    var tweetTime = moment(tweet.etaTime);
+    if (tweet.etaDate !== undefined) {
+      var tweetDate = moment(tweet.etaDate).startOf('day');
+      var tweetTime = moment(tweet.etaTime);
 
-    tweetDate.hour(tweetTime.hour()).minute(tweetTime.minute());
-    tweet.eta = tweetDate.toISOString();
+      tweetDate.hour(tweetTime.hour()).minute(tweetTime.minute());
+      tweet.eta = tweetDate.toISOString();
+    }
 
     delete tweet.etaDate;
     delete tweet.etaTime;
