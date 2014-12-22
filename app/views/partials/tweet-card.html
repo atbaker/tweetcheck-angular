@@ -32,7 +32,7 @@
         <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-remove"></span> Reject</button>
         <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]"><span class="fa fa-fw fa-check"></span> Post</button>
 
-        <div ng-switch on="tweet.status" class="last-action hidden-xs pull-right">
+        <div ng-switch on="tweet.status" ng-if="!processingTracker[tweet.id]" class="last-action hidden-xs pull-right">
             <div ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Submitted by {{tweet.author}} <span am-time-ago="tweet.created"></span></div>
             <div ng-switch-when="0" ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
 
