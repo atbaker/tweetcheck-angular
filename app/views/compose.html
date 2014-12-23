@@ -18,7 +18,7 @@
       <div class="pull-right">
         <span ng-include="'views/partials/processing-spinner.html'"></span>
         <span class="character-count" ng-bind="getCharacterCount(tweet.body)" ng-style="getCharacterCount(tweet.body) < 0 ? {'color': 'red'} : ''"></span>
-        <button class="btn btn-primary" type="submit" ng-click="save(tweet)"ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save</button>
+        <button ng-if="!tweet.status === 3" class="btn btn-primary" type="submit" ng-click="save(tweet)"ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save</button>
         <button ng-if="user.is_approver" class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save and post now</button>
       </div>
 
@@ -30,12 +30,12 @@
     <form ng-submit="schedule(tweet)" role="form" name="scheduleForm" novalidate>
 
       <div class="form-group">
-        <label class="control-label" for="inputDate">Date</label>
+        <label class="control-label" for="inputDate">Date (MM/DD/YYYY)</label>
         <input ng-model="tweet.etaDate" type="date" class="form-control" name="date" id="inputDate" required>
       </div>
 
       <div class="form-group">
-        <label class="control-label" for="inputTime">Time</label>
+        <label class="control-label" for="inputTime">Time (HH:MM AM or PM)</label>
         <input ng-model="tweet.etaTime" type="time" class="form-control" name="time" id="inputTime" required>
       </div>
 
