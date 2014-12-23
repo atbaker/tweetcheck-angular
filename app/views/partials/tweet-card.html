@@ -65,11 +65,11 @@
         </button>
 
         <div ng-switch on="tweet.status" ng-if="!(processing || processingTracker[tweet.id])" class="card-message hidden-xs pull-right">
-            <div ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Created by {{tweet.author}} <span am-time-ago="tweet.created"></span></div>
+            <small ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Created by {{tweet.author}} <span am-time-ago="tweet.created"></span></small>
             <small ng-switch-when="0" ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
-            <div ng-switch-when="1">Posted by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
-            <div ng-switch-when="-1">Rejected by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
-            <div ng-switch-when="3">Scheduled by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></div>
+            <small ng-switch-when="1">Posted by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
+            <small ng-switch-when="-1">Rejected by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
+            <small ng-switch-when="3">Scheduled by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
         </div>
         <div ng-include="'views/partials/processing-spinner.html'" class="card-message pull-right hidden-xs"></div>
         <div class="clearfix"></div>
