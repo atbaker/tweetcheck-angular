@@ -41,7 +41,6 @@ angular.module('tweetCheck', [
 })
 
 .factory('authInterceptor', function($window, $injector, $q) {
-
   return {
     request: function(config) {
       var AuthService;
