@@ -112,6 +112,10 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
       $rootScope.user = value[0];
     });
     var handles = Handle.queryObject({}, function(value) {
+      if (Object.keys(value).length < 3) {
+        // This organization hasn't authorized any handles yet
+        $state.go('dashboard.authorize');
+      }
       $rootScope.handleObject = value;
     });
 
