@@ -10,7 +10,7 @@
         <a class="navbar-brand" ui-sref="dashboard.review">TweetCheck</a>
     </div>
 
-    <div class="navbar-default sidebar" role="navigation">
+    <div class="navbar-default sidebar" role="navigation" ng-if="$state.current.name !== 'connect'">
         <div class="sidebar-nav navbar-collapse" ng-class="collapseNavbar ? 'collapse' : ''">
             <ul class="nav" id="side-menu">
                 <li>
@@ -28,9 +28,6 @@
                 </li>
                 <li>
                     <a ui-sref="dashboard.compose.new" ui-sref-opts="{reload: true}" ui-sref-active="active"><i class="fa fa-fw fa-pencil-square-o"></i> Compose</a>
-                </li>
-                <li>
-                    <a ui-sref="dashboard.authorize" ui-sref-active="active"><i class="fa fa-fw fa-sign-in"></i> Authorize</a>
                 </li>
                 <li>
                     <a ui-sref="dashboard.review"><i class="fa fa-fw fa-gear"></i> Settings</a>

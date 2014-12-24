@@ -18,6 +18,15 @@ angular.module('tweetCheck.states', ['ui.router'])
       controller: 'LogoutCtrl'
     })
 
+    .state('connect', {
+      url: '/connect',
+      templateUrl: '/views/connect.html',
+      controller: 'ConnectCtrl',
+      data: {
+        pageTitle: 'Connect account'
+      }
+    })
+
     .state('dashboard', {
       url: "/dashboard",
       abstract: true,
@@ -152,15 +161,6 @@ angular.module('tweetCheck.states', ['ui.router'])
         activity: function($stateParams, Action) {
           return Action.query({tweet_id: $stateParams.id}).$promise;
         }
-      }
-    })
-
-    .state('dashboard.authorize', {
-      url: '/authorize',
-      templateUrl: '/views/authorize.html',
-      controller: 'AuthorizeCtrl',
-      data: {
-        pageTitle: 'Authorize'
       }
     });
 

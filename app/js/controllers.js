@@ -19,7 +19,7 @@ angular.module('tweetCheck.controllers', [])
 .controller('DashboardCtrl', function() {
 })
 
-.controller('AuthorizeCtrl', function($scope, $http) {
+.controller('ConnectCtrl', function($scope, $http) {
   $scope.getRequestToken = function() {
     $http.get('/auth/request').success(function(data, status, headers, config) {
       window.location.href = data.authorizationUrl;
