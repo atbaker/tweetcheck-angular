@@ -162,6 +162,16 @@ angular.module('tweetCheck.states', ['ui.router'])
           return Action.query({tweet_id: $stateParams.id}).$promise;
         }
       }
+    })
+
+    
+    .state('dashboard.settings', {
+      url: '/settings',
+      templateUrl: '/views/settings.html',
+      controller: 'SettingsCtrl',
+      data: {
+        pageTitle: 'Settings'
+      }
     });
 
   $urlRouterProvider.otherwise('/dashboard/review');

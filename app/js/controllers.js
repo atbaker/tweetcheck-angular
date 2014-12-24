@@ -211,4 +211,8 @@ angular.module('tweetCheck.controllers', [])
     tweet.etaDate = eta;
     tweet.etaTime = eta;
   }
+})
+
+.controller('SettingsCtrl', function($scope) {
+
 });
