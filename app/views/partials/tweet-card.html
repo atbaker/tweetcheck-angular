@@ -51,28 +51,26 @@
     </div>
   </div>
   <div class="panel-footer">
-    <div ng-switch on="user.is_approver">
-        <button ng-switch-when="true" ng-if="tweet.status === 0 || tweet.status === 3" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]">
-            <span class="fa fa-fw fa-remove"></span> Reject
-        </button>
-        <button ng-switch-when="true" ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]">
-            <span ng-if="tweet.eta === null">
-                <span class="fa fa-fw fa-check"></span> Post now
-            </span>
-            <span ng-if="tweet.eta !== null">
-                <span class="fa fa-fw fa-check"></span> Add to schedule
-            </span>
-        </button>
+    <button ng-if="tweet.status === 0 || tweet.status === 3" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]">
+        <span class="fa fa-fw fa-remove"></span> Reject
+    </button>
+    <button ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]">
+        <span ng-if="tweet.eta === null">
+            <span class="fa fa-fw fa-check"></span> Post now
+        </span>
+        <span ng-if="tweet.eta !== null">
+            <span class="fa fa-fw fa-check"></span> Add to schedule
+        </span>
+    </button>
 
-        <div ng-switch on="tweet.status" ng-if="!(processing || processingTracker[tweet.id])" class="card-message hidden-xs pull-right">
-            <small ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Created by {{tweet.author}} <span am-time-ago="tweet.created"></span></small>
-            <small ng-switch-when="0" ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
-            <small ng-switch-when="1">Posted by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
-            <small ng-switch-when="-1">Rejected by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
-            <small ng-switch-when="3">Scheduled by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
-        </div>
-        <div ng-include="'views/partials/processing-spinner.html'" class="card-message pull-right hidden-xs"></div>
-        <div class="clearfix"></div>
+    <div ng-switch on="tweet.status" ng-if="!(processing || processingTracker[tweet.id])" class="card-message hidden-xs pull-right">
+        <small ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Created by {{tweet.author}} <span am-time-ago="tweet.created"></span></small>
+        <small ng-switch-when="0" ng-if="tweet.created !== tweet.last_modified">Edited by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
+        <small ng-switch-when="1">Posted by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
+        <small ng-switch-when="-1">Rejected by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
+        <small ng-switch-when="3">Scheduled by {{tweet.last_editor}} <span am-time-ago="tweet.last_modified"></span></small>
     </div>
+    <div ng-include="'views/partials/processing-spinner.html'" class="card-message pull-right hidden-xs"></div>
+    <div class="clearfix"></div>
   </div>
 </div>
