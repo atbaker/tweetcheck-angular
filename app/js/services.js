@@ -3,14 +3,14 @@
 angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 
 .factory('Tweet', function($resource) {
-  return $resource('api/tweets/:id', {id: '@id'}, {
+  return $resource('api/tweets/:id/', {id: '@id'}, {
     queryApproved: {method: 'GET', isArray: true, params: {status: 1}},
     update: {method: 'PUT'}
   });
 })
 
 .factory('Handle', function($resource) {
-  return $resource('api/handles/:id', {id: '@id'}, {
+  return $resource('api/handles/:id/', {id: '@id'}, {
       queryObject: {method: 'GET', transformResponse: function(data, headers) {
         var handles = angular.fromJson(data);
         var handleObject = {};
@@ -27,13 +27,13 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 })
 
 .factory('Action', function($resource) {
-  return $resource('api/actions/:id', {}, {
+  return $resource('api/actions/:id/', {}, {
     query: {method: 'GET', isArray: false}
   });
 })
 
 .factory('User', function($resource) {
-  return $resource('api/users/:id', {id: '@id'});
+  return $resource('api/users/:id/', {id: '@id'});
 })
 
 .factory('Realtime', function($rootScope) {
