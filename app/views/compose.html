@@ -18,7 +18,7 @@
       <div class="pull-right">
         <span ng-include="'views/partials/processing-spinner.html'"></span>
         <span class="character-count" ng-bind="getCharacterCount(tweet.body)" ng-style="getCharacterCount(tweet.body) < 0 ? {'color': 'red'} : ''"></span>
-        <button ng-if="newTweet || tweet.status !== 3" class="btn btn-primary" type="submit" ng-click="save(tweet)"ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save</button>
+        <button ng-if="newTweet || tweet.status !== 3" class="btn btn-primary" type="submit" ng-click="save(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save</button>
         <button ng-if="user.is_approver" class="btn btn-success" ng-click="publish(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save and post now</button>
       </div>
 
