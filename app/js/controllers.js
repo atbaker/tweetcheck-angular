@@ -129,7 +129,7 @@ angular.module('tweetCheck.controllers', [])
     if (body === undefined) {
       return 140;
     }
-    
+
     var remaining = 140;
     var splitBody = body.split(' ');
 
