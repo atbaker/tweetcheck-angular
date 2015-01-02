@@ -126,41 +126,24 @@ angular.module('tweetCheck.states', ['ui.router'])
     })
 
     .state('dashboard.compose', {
-      url: '/compose',
-      abstract: true,
-      template: '<ui-view/>',
+      url: '/compose/:id',
+      templateUrl: '/views/compose.html',
       controller: 'ComposeCtrl',
+      data: {
+        pageTitle: 'Compose new tweet'
+      },
       resolve: {
         handles: function(Handle) {
           return Handle.query().$promise;
-        }
-      }
-    })
-
-    .state('dashboard.compose.new', {
-      url: '/new',
-      templateUrl: '/views/compose.html',
-      data: {
-        pageTitle: 'Compose new tweet',
-        newTweet: true
-      }
-    })
-
-    .state('dashboard.compose.edit', {
-      url: '/:id/edit',
-      templateUrl: '/views/compose.html',
-      controller: 'EditCtrl',
-      data: {
-        pageTitle: 'Edit tweet',
-        newTweet: false
-      },
-      resolve: {
-        tweet: function($stateParams, Tweet) {
-          return Tweet.get({id: $stateParams.id}).$promise;
         },
-        activity: function($stateParams, Action) {
-          return Action.query({tweet_id: $stateParams.id}).$promise;
-        }
+        tweet: function($stateParams, Tweet) {
+          if ($stateParams.id !== '') {
+            this.data.pageTitle = 'Edit tweet';
+            return Tweet.get({id: $stateParams.id}).$promise;
+          } else {
+            return new Tweet();
+          }
+        },
       }
     })
 

@@ -37,7 +37,7 @@
         <span ng-include="'views/partials/processing-spinner.html'"></span>
         <span class="character-count" ng-bind="getCharacterCount(tweet.body)" ng-style="getCharacterCount(tweet.body) < 0 ? {'color': 'red'} : ''"></span>
         <button class="btn btn-primary" type="submit" ng-click="save(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">Save</button>
-        <button ng-if="user.is_approver" class="btn btn-success" ng-click="approve(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">
+        <button ng-if="user.is_approver && tweet.status !== 3" class="btn btn-success" ng-click="approve(tweet)" ng-disabled="composeForm.$invalid || getCharacterCount(tweet.body) < 0 || processing">
           <span ng-if="showScheduleFields">Save and add to schedule</span>
           <span ng-if="!showScheduleFields">Save and post now</span>
         </button>

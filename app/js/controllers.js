@@ -118,12 +118,22 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('ComposeCtrl', function($scope, $rootScope, $state, handles, Tweet) {
-  $scope.newTweet = $state.current.data.newTweet;
+.controller('ComposeCtrl', function($scope, $rootScope, $state, tweet, handles, Tweet) {
+  $scope.newTweet = tweet.id === undefined;
+
   $scope.handles = handles;
   $scope.processing = false;
 
-  $scope.tweet = new Tweet();
+  // Initialize the tweet model object
+  $scope.tweet = tweet;
+  if (!$scope.newTweet) {
+    if (tweet.eta !== null) {
+      $scope.showScheduleFields = true;
+      var eta = moment(tweet.eta).toDate();
+      tweet.etaDate = eta;
+      tweet.etaTime = eta;
+    }
+  }
 
   if (handles.length === 1) {
     $scope.disableHandle = true;
@@ -207,16 +217,6 @@ angular.module('tweetCheck.controllers', [])
     tweet.status = -1;
     $scope.save(tweet);
   };
-})
-
-.controller('EditCtrl', function($scope, tweet) {
-  $scope.tweet = tweet;
-
-  if (tweet.eta !== null) {
-    var eta = moment(tweet.eta).toDate();
-    tweet.etaDate = eta;
-    tweet.etaTime = eta;
-  }
 })
 
 .controller('SettingsCtrl', function($scope) {
