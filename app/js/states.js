@@ -164,7 +164,6 @@ angular.module('tweetCheck.states', ['ui.router'])
       }
     })
 
-    
     .state('dashboard.settings', {
       url: '/settings',
       templateUrl: '/views/settings.html',
