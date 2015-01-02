@@ -53,7 +53,11 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.approveTweet = function(tweet) {
     var tweetUpdate = angular.copy(tweet);
-    tweetUpdate.status = 1;
+    if (tweetUpdate.eta !== null) {
+      tweetUpdate.status = 3;
+    } else {
+      tweetUpdate.status = 1;
+    }
     $scope.updateTweet(tweetUpdate);
   };
 
@@ -99,7 +103,11 @@ angular.module('tweetCheck.controllers', [])
 
   $scope.approveTweet = function(tweet) {
     var tweetUpdate = angular.copy(tweet);
-    tweetUpdate.status = 1;
+    if (tweetUpdate.eta !== null) {
+      tweetUpdate.status = 3;
+    } else {
+      tweetUpdate.status = 1;
+    }
     $scope.updateTweet(tweetUpdate);
   };
 
