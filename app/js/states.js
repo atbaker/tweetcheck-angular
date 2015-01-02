@@ -141,6 +141,7 @@ angular.module('tweetCheck.states', ['ui.router'])
             this.data.pageTitle = 'Edit tweet';
             return Tweet.get({id: $stateParams.id}).$promise;
           } else {
+            this.data.pageTitle = 'Compose new tweet';
             return new Tweet();
           }
         },

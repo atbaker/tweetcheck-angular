@@ -20,7 +20,7 @@
                     <a ui-sref="dashboard.schedule" ui-sref-active="active"><i class="fa fa-fw fa-clock-o"></i> Schedule</a>
                 </li>
                 <li>
-                    <a ui-sref="dashboard.compose" ui-sref-opts="{reload: true}" ui-sref-active="active"><i class="fa fa-fw fa-pencil-square-o"></i> Compose</a>
+                    <a ui-sref="dashboard.compose({id: null})" ui-sref-opts="{reload: true}" ui-sref-active="active"><i class="fa fa-fw fa-pencil-square-o"></i> Compose</a>
                 </li>
                 <li ng-class="showHistory ? 'active' : ''">
                     <a ng-model="showHistory" ng-click="showHistory=!showHistory"><i class="fa fa-fw fa-history"></i> History <span class="fa arrow"></span></a>
