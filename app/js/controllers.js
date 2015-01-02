@@ -194,18 +194,17 @@ angular.module('tweetCheck.controllers', [])
     }
   };
 
-  $scope.publish = function(tweet) {
-    tweet.status = 1;
+  $scope.approve = function(tweet) {
+    if (tweet.etaDate !== null) {
+      tweet.status = 3;
+    } else {
+      tweet.status = 1;
+    }
     $scope.save(tweet);
   };
 
   $scope.reject = function(tweet) {
     tweet.status = -1;
-    $scope.save(tweet);
-  };
-
-  $scope.schedule = function(tweet, date, time) {
-    tweet.status = 3;
     $scope.save(tweet);
   };
 })
