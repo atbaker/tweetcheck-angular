@@ -15,7 +15,8 @@
     "angular-ui-router": "0.2.13",
     "animate.css": "3.2.x",
     "bootstrap": "3.3.x",
-    "socket.io-client": "1.2.x",
-    "font-awesome": "~4.2.0"
+    "font-awesome": "~4.2.0",
+    "ngFx": "~1.0.5",
+    "socket.io-client": "1.2.x"
   }
 }

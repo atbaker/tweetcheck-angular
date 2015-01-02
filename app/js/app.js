@@ -1,6 +1,7 @@
 // App module
 angular.module('tweetCheck', [
   'angularMoment',
+  'ngFx',
   'tweetCheck.states',
   'tweetCheck.controllers',
   'tweetCheck.filters',
