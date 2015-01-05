@@ -30,12 +30,22 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
 RUN rm /etc/nginx/conf.d/default.conf
 RUN rm /etc/nginx/conf.d/example_ssl.conf
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY . /usr/share/nginx/html
+# Add TweetCheck certificates
+COPY conf/ssl-bundle.crt /etc/ssl/ssl-bundle.crt
+COPY conf/tweetcheck.key /etc/ssl/tweetcheck.key
 
+# Update the working directory
 WORKDIR /usr/share/nginx/html
 
 # Install bower dependencies
+RUN mkdir -p /usr/share/nginx/html/app/lib
+COPY bower.json .bowerrc /usr/share/nginx/html/
 RUN bower install --config.interactive=false --allow-root
+
+# Add nginx configuration
+COPY conf/nginx.conf /etc/nginx/nginx.conf
+
+# Copy in latest source code
+COPY . /usr/share/nginx/html
 
 EXPOSE 80 443
