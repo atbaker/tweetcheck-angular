@@ -16,6 +16,7 @@ angular.module('tweetCheck.controllers', [])
 })
 
 .controller('DashboardCtrl', function(Realtime) {
+  Realtime.getCounts();
 })
 
 .controller('ConnectCtrl', function($scope, $http) {

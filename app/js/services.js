@@ -36,7 +36,7 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   return $resource('api/users/:id/', {id: '@id'});
 })
 
-.factory('Realtime', function($rootScope) {
+.factory('Realtime', function($rootScope, $http) {
   var realtime = {};
 
   var socket = io('/');
@@ -65,6 +65,14 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   realtime.setCallbacks = function(newCallback, updateCallback) {
     this.newCallback = newCallback;
     this.updateCallback = updateCallback;
+  };
+
+  realtime.getCounts = function() {
+    $http.get('/api/counts/')
+      .success(function(data, status, headers, config) {
+        $rootScope.pendingCount = data.pending;
+        $rootScope.scheduledCount = data.scheduled;
+      });
   };
 
   return realtime;
