@@ -50,6 +50,18 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
     realtime.updateCallback(message.id);
   });
 
+  socket.on('pending', function(message) {
+    $rootScope.$apply(function() {
+      $rootScope.pendingCount = message;
+    });
+  });
+
+  socket.on('scheduled', function(message) {
+    $rootScope.$apply(function() {
+      $rootScope.scheduledCount = message;
+    });
+  });
+
   realtime.setCallbacks = function(newCallback, updateCallback) {
     this.newCallback = newCallback;
     this.updateCallback = updateCallback;

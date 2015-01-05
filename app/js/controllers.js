@@ -15,7 +15,7 @@ angular.module('tweetCheck.controllers', [])
   AuthService.logout();
 })
 
-.controller('DashboardCtrl', function() {
+.controller('DashboardCtrl', function(Realtime) {
 })
 
 .controller('ConnectCtrl', function($scope, $http) {
