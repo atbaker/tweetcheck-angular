@@ -227,6 +227,10 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
+.controller('UsersCtrl', function($scope, users) {
+  $scope.users = users;
+})
+
 .controller('SettingsCtrl', function($scope) {
 
 });

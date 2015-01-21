@@ -48,3 +48,7 @@
 .load-more {
     margin-bottom: 20px;
 }
+
+.table tbody>tr>td.vertical-align {
+    vertical-align: middle;
+}

@@ -128,6 +128,29 @@ angular.module('tweetCheck.states', ['ui.router'])
       }
     })
 
+    .state('dashboard.users', {
+      url: '/users',
+      templateUrl: '/views/users.html',
+      controller: 'UsersCtrl',
+      data: {
+        pageTitle: 'Users'
+      },
+      resolve: {
+        users: function(User) {
+          return User.query().$promise;
+        }
+      }
+    })
+
+    .state('dashboard.settings', {
+      url: '/settings',
+      templateUrl: '/views/settings.html',
+      controller: 'SettingsCtrl',
+      data: {
+        pageTitle: 'Settings'
+      }
+    })
+
     .state('dashboard.detail', {
       url: '/:id',
       templateUrl: '/views/detail.html',
@@ -165,15 +188,6 @@ angular.module('tweetCheck.states', ['ui.router'])
             return new Tweet();
           }
         },
-      }
-    })
-
-    .state('dashboard.settings', {
-      url: '/settings',
-      templateUrl: '/views/settings.html',
-      controller: 'SettingsCtrl',
-      data: {
-        pageTitle: 'Settings'
       }
     });
 

@@ -1,0 +1,78 @@
+<div class="row">
+
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Approvers</h3>
+      </div>
+      <div class="panel-body">
+        <p>Approvers can <strong>publish, schedule, and reject tweets</strong> that are pending review. They can also publish tweets directly.</p>
+
+        <table class="table table-striped">
+          <thead>
+            <tr role="row">
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="orgUser in users | filter:{is_approver: true}">
+              <td class="vertical-align">{{orgUser.email}}</td>
+              <td>
+                <div class="btn-group btn-group-sm" role="group" ng-if="orgUser.id !== user.id">
+                  <button class="btn btn-default" type="button">Make non-approver</button>
+                  <button class="btn btn-danger" type="button">Disable</button>
+                </div>
+                <span ng-if="orgUser.id === user.id">
+                  <em>this is you</em>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Invite new approver</h4>
+        <form role="form" class="form-inline" name="approverForm" ng-submit="inviteApprover(approverEmail)" novalidate>
+          <div class="form-group" ng-class="{ 'has-error' : approverForm.email.$invalid && approverForm.email.$touched }">
+            <label for="approverEmail">Email</label>
+            <input type="email" ng-model="approverEmail" class="form-control" name="email" id="approverEmail" placeholder="joe@example.com" required>
+          </div>
+          <button type="submit" class="btn btn-primary" ng-disabled="approverForm.$invalid">Invite approver</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Authors</h3>
+      </div>
+      <div class="panel-body">
+        <p>Authors can submit tweets for approval, but <strong>their tweets cannot be posted or scheduled</strong> until they are approved.</p>
+
+        <table class="table table-striped">
+          <thead>
+            <tr role="row">
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="user in users | filter:{is_approver: false}">
+              <td class="vertical-align">{{user.email}}</td>
+              <td>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button class="btn btn-default" type="button">Make approver</button>
+                  <button class="btn btn-danger" type="button">Disable</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary btn-block">Invite new non-approver</button>
+      </div>
+    </div>
+  </div>
+</div>
