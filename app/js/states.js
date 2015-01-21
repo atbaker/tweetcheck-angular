@@ -16,7 +16,6 @@ angular.module('tweetCheck.states', ['ui.router'])
     .state('activate', {
       url: "/activate?token",
       templateUrl: '/views/activate.html',
-      controller: 'ActivateCtrl',
       data: {
         pageTitle: 'Activate your account'
       }

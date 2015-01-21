@@ -22,6 +22,9 @@ angular.module('tweetCheck', [
         event.preventDefault();
         $state.go('connect');
       }
+    } else if (toState.name === 'activate' && toParams.token !== undefined) {
+      event.preventDefault();
+      AuthService.loginSuccess({token: toParams.token});
     }
   });
 

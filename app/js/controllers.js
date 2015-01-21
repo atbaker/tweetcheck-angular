@@ -10,12 +10,6 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('ActivateCtrl', function($scope, $stateParams, AuthService) {
-  if ($stateParams.token !== undefined) {
-    AuthService.loginSuccess({token: $stateParams.token});
-  }
-})
-
 .controller('LoginCtrl', function($scope, AuthService) {
   $scope.login = function(user) {
     AuthService.login(user.email, user.password, function(error) {
