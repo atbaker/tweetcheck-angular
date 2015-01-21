@@ -82,8 +82,7 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 .factory('AuthService', function($rootScope, Handle, $http, $state, $cookieStore, $q, User, $window) {
   var authService = {};
 
-  authService.register = function(userData, success, failure) {
-    var self = this;
+  authService.register = function(userData, failure) {
     $http.post('/auth/register', userData)
     .success(function(data, status, headers) {
       $state.go('activate');
@@ -105,12 +104,11 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   };
 
   authService.login = function(username, password, failure) {
-    var self = this;
     $http.post('/api-token-auth/',
       {username: username,
        password: password}
     )
-    .success(self.loginSuccess)
+    .success(this.loginSuccess.bind(this))
     .error(function(data, status, headers) {
       failure(data.non_field_errors[0]);
     });
@@ -148,6 +146,7 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
         // This organization hasn't authorized any handles yet
         $state.go('connect');
       }
+
       $rootScope.handleObject = value;
     });
 
