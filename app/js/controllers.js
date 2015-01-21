@@ -2,10 +2,23 @@
 
 angular.module('tweetCheck.controllers', [])
 
+.controller('RegisterCtrl', function($scope, AuthService) {
+  $scope.register = function(user) {
+    AuthService.register(user, function() {}, function(error) {
+      $scope.registerError = error;
+    });
+  };
+})
+
+.controller('ActivateCtrl', function($scope, $stateParams, AuthService) {
+  if ($stateParams.token !== undefined) {
+    AuthService.loginSuccess({token: $stateParams.token});
+  }
+})
+
 .controller('LoginCtrl', function($scope, AuthService) {
   $scope.login = function(user) {
-    AuthService.login(user.email, user.password, function() {
-    }, function(error) {
+    AuthService.login(user.email, user.password, function(error) {
       $scope.loginError = error;
     });
   };

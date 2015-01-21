@@ -82,23 +82,35 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 .factory('AuthService', function($rootScope, Handle, $http, $state, $cookieStore, $q, User, $window) {
   var authService = {};
 
-  authService.login = function(username, password, success, failure) {
+  authService.register = function(userData, success, failure) {
+    var self = this;
+    $http.post('/auth/register', userData)
+    .success(function(data, status, headers) {
+      $state.go('activate');
+    })
+    .error(function(data, status, headers) {
+      failure(data.error);
+    });
+  };
+
+  authService.loginSuccess = function(data, status, headers) {
+    $cookieStore.put('token', data.token);
+
+    // Store the token in our session for easy access
+    $window.sessionStorage['token'] = data.token;
+
+    this.prepareScope(data.token, function() {
+      $state.go('dashboard.review');
+    });
+  };
+
+  authService.login = function(username, password, failure) {
     var self = this;
     $http.post('/api-token-auth/',
       {username: username,
        password: password}
     )
-    .success(function(data, status, headers) {
-      $cookieStore.put('token', data.token);
-
-      // Store the token in our session for easy access
-      $window.sessionStorage['token'] = data.token;
-
-      self.prepareScope(data.token, function() {
-        success();
-        $state.go('dashboard.review');
-      });
-    })
+    .success(self.loginSuccess)
     .error(function(data, status, headers) {
       failure(data.non_field_errors[0]);
     });

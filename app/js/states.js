@@ -4,6 +4,24 @@ angular.module('tweetCheck.states', ['ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
+    .state('register', {
+      url: "/register",
+      templateUrl: '/views/register.html',
+      controller: 'RegisterCtrl',
+      data: {
+        pageTitle: 'Register'
+      }
+    })
+
+    .state('activate', {
+      url: "/activate?token",
+      templateUrl: '/views/activate.html',
+      controller: 'ActivateCtrl',
+      data: {
+        pageTitle: 'Activate your account'
+      }
+    })
+
     .state('login', {
       url: "/login",
       templateUrl: '/views/login.html',

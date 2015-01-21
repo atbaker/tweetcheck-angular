@@ -4,6 +4,7 @@ angular.module('tweetCheck', [
   'ngFx',
   'tweetCheck.states',
   'tweetCheck.controllers',
+  'tweetCheck.directives',
   'tweetCheck.filters',
   'tweetCheck.services'
 ])
