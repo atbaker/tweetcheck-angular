@@ -13,6 +13,18 @@ angular.module('tweetCheck', [
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
 
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    if (toState.name.indexOf('dashboard') !== -1) {
+      if ($rootScope.user !== undefined && !$rootScope.user.is_active) {
+        event.preventDefault();
+        $state.go('activate');
+      } else if ($rootScope.handleObject !== undefined && Object.keys($rootScope.handleObject).length < 3) {
+        event.preventDefault();
+        $state.go('connect');
+      }
+    }
+  });
+
   $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
     $rootScope.$previousState = from;
   });
