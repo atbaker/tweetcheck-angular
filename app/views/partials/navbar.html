@@ -10,7 +10,7 @@
         <a class="navbar-brand" ui-sref="dashboard.review">TweetCheck</a>
     </div>
 
-    <div class="navbar-default sidebar" role="navigation" ng-if="$state.current.name !== 'connect'">
+    <div class="navbar-default sidebar" role="navigation" ng-if="$state.current.data.showSidebar">
         <div class="sidebar-nav navbar-collapse" ng-class="collapseNavbar ? '' : 'collapse'">
             <ul class="nav" id="side-menu">
                 <li>
@@ -40,7 +40,7 @@
     </div>
 
     <ul class="nav navbar-nav navbar-top-links navbar-right" ng-hide="collapseNavbar">
-      <li class="hidden-xs"><p class="navbar-text">Hello, {{user.email_without_domain}}</p></li>
+      <li ng-if="$state.current.data.showSidebar" class="hidden-xs"><p class="navbar-text">Hello, {{user.email_without_domain}}</p></li>
       <li class="hidden-xs logout-link"><a ui-sref="logout"><i class="fa fa-fw fa-sign-out"></i> Sign out</a></li>
     </ul>
 </nav>

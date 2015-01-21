@@ -49,7 +49,10 @@ angular.module('tweetCheck.states', ['ui.router'])
       url: "/dashboard",
       abstract: true,
       templateUrl: "/views/dashboard.html",
-      controller: 'DashboardCtrl'
+      controller: 'DashboardCtrl',
+      data: {
+        showSidebar: true
+      }
     })
 
     .state('dashboard.review', {
