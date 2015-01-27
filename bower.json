@@ -16,6 +16,9 @@
     "animate.css": "3.2.x",
     "bootstrap": "3.3.x",
     "font-awesome": "~4.2.0",
+    "jquery": "2.1.x",
+    "jquery.scrollTo": "1.4.x",
+    "modernizr": "2.8.x",
     "ngFx": "~1.0.5",
     "socket.io-client": "1.2.x"
   }
