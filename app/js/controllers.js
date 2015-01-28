@@ -227,8 +227,9 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('UsersCtrl', function($scope, users) {
-  $scope.users = users;
+.controller('UsersCtrl', function($scope, users, filterFilter) {
+  $scope.approvers = filterFilter(users, {is_approver: true});
+  $scope.authors = filterFilter(users, {is_approver: false});
 })
 
 .controller('SettingsCtrl', function($scope) {

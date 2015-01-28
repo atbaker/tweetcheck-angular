@@ -26,4 +26,15 @@ angular.module('tweetCheck.directives', [])
     }
   };
 
+})
+
+.directive('userList', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      users: '=',
+      currentUser: '='
+    },
+    templateUrl: 'views/partials/user-list.html'
+  };
 });

@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr role="row">
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="orgUser in users" class="user-row" role="row">
+      <td class="vertical-align">{{orgUser.email}}</td>
+      <td>
+        <div class="btn-group btn-group-sm" role="group" ng-if="orgUser.id !== currentUser.id">
+
+          <button ng-if="user.is_approver" ng-click="orgUser.is_approver = false" class="btn btn-default" type="button">Make author</button>          
+          <button ng-if="!user.is_approver" ng-click="orgUser.is_approver = true" class="btn btn-default" type="button">Make non-approver</button>
+
+          <button class="btn btn-danger" type="button">Disable</button>
+        </div>
+
+        <div ng-if="orgUser.id === currentUser.id" class="btn-group btn-group-sm">
+          <a ui-sref="dashboard.settings" class="btn btn-default">Go to my settings</a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
