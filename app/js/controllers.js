@@ -227,9 +227,28 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('UsersCtrl', function($scope, users, filterFilter) {
+.controller('UsersCtrl', function($scope, users, filterFilter, User) {
   $scope.approvers = filterFilter(users, {is_approver: true});
   $scope.authors = filterFilter(users, {is_approver: false});
+
+  $scope.updateScope = function(userList, updatedUser) {
+    for (var i=0; i < userList.length; i++) {
+      if (updatedUser.id === userList[i].id) {
+        angular.extend(userList[i], updatedUser);
+      }
+    }
+  };
+
+  $scope.makeApprover = function(index) {
+    console.log(index);
+    var user = $scope.authors[index];
+    user.is_approver = true;
+
+    User.update(user, function(updatedUser) {
+      $scope.authors.splice(index, 1);
+      $scope.approvers.push(updatedUser);
+    });
+  };
 })
 
 .controller('SettingsCtrl', function($scope) {

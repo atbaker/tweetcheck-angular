@@ -11,8 +11,8 @@
       <td>
         <div class="btn-group btn-group-sm" role="group" ng-if="orgUser.id !== currentUser.id">
 
-          <button ng-if="user.is_approver" ng-click="orgUser.is_approver = false" class="btn btn-default" type="button">Make author</button>          
-          <button ng-if="!user.is_approver" ng-click="orgUser.is_approver = true" class="btn btn-default" type="button">Make non-approver</button>
+          <button ng-if="orgUser.is_approver" ng-click="orgUser.is_approver = false" class="btn btn-default" type="button">Make author</button>          
+          <button ng-if="!orgUser.is_approver" ng-click="makeApprover($index)" class="btn btn-default" type="button">Make approver</button>
 
           <button class="btn btn-danger" type="button">Disable</button>
         </div>
