@@ -8,15 +8,28 @@
       <div class="panel-body">
         <p>Approvers can <strong>publish, schedule, and reject tweets</strong> that are pending review. They can also publish tweets directly.</p>
 
-        <user-list users="approvers" current-user="user"></user-list>
+        <table class="table table-striped">
+          <thead>
+            <tr role="row">
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="orgUser in users | filter:{is_approver: true}" ng-include="'views/partials/user-entry.html'">
+            </tr>
+          </tbody>
+        </table>
+
 
         <h4>Add new approver</h4>
-        <form role="form" class="form-inline" name="approverForm" ng-submit="inviteApprover(approverEmail)" novalidate>
+        <form role="form" class="form-inline" name="approverForm" novalidate>
+          <div ng-if="inviteApproverError" class="alert alert-danger" role="alert" ng-bind="inviteApproverError"></div>
           <div class="form-group" ng-class="{ 'has-error' : approverForm.email.$invalid && approverForm.email.$touched }">
             <label for="approverEmail">Email</label>
             <input type="email" ng-model="approverEmail" class="form-control" name="email" id="approverEmail" placeholder="joe@example.com" required>
           </div>
-          <button type="submit" class="btn btn-primary" ng-disabled="approverForm.$invalid">Invite approver</button>
+          <button ng-click="inviteApprover(approverEmail)" type="submit" class="btn btn-primary" ng-disabled="approverForm.$invalid">Invite approver</button>
         </form>
         <p>New users will receive an activation email with further instructions.<p>
 
@@ -32,15 +45,27 @@
       <div class="panel-body">
         <p>Authors can submit tweets for approval, but <strong>their tweets cannot be posted or scheduled</strong> until they are approved.</p>
 
-        <user-list users="authors" current-user="user"></user-list>
+        <table class="table table-striped">
+          <thead>
+            <tr role="row">
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="orgUser in users | filter:{is_approver: false}" ng-include="'views/partials/user-entry.html'">
+            </tr>
+          </tbody>
+        </table>
 
         <h4>Add new author</h4>
-        <form role="form" class="form-inline" name="authorForm" ng-submit="inviteAuthor(authorEmail)" novalidate>
+        <form role="form" class="form-inline" name="authorForm" novalidate>
+          <div ng-if="inviteAuthorError" class="alert alert-danger" role="alert" ng-bind="inviteAuthorError"></div>
           <div class="form-group" ng-class="{ 'has-error' : authorForm.email.$invalid && authorForm.email.$touched }">
             <label for="authorEmail">Email</label>
             <input type="email" ng-model="authorEmail" class="form-control" name="email" id="authorEmail" placeholder="joe@example.com" required>
           </div>
-          <button type="submit" class="btn btn-primary" ng-disabled="authorForm.$invalid">Invite author</button>
+          <button ng-click="inviteAuthor(authorEmail)" type="submit" class="btn btn-primary" ng-disabled="authorForm.$invalid">Invite author</button>
         </form>
         <p>New users will receive an activation email with further instructions.<p>
 

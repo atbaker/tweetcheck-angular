@@ -4,7 +4,7 @@ angular.module('tweetCheck.controllers', [])
 
 .controller('RegisterCtrl', function($scope, AuthService) {
   $scope.register = function(user) {
-    AuthService.register(user, function() {}, function(error) {
+    AuthService.register(user, function(error) {
       $scope.registerError = error;
     });
   };
@@ -227,27 +227,43 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
-.controller('UsersCtrl', function($scope, users, filterFilter, User) {
-  $scope.approvers = filterFilter(users, {is_approver: true});
-  $scope.authors = filterFilter(users, {is_approver: false});
+.controller('UsersCtrl', function($scope, $rootScope, users, filterFilter, User, AuthService) {
+  $scope.users = users;
 
-  $scope.updateScope = function(userList, updatedUser) {
-    for (var i=0; i < userList.length; i++) {
-      if (updatedUser.id === userList[i].id) {
-        angular.extend(userList[i], updatedUser);
-      }
-    }
+  $scope.changeApprover = function(user) {
+    user.is_approver = !user.is_approver;
+    User.update(user);
   };
 
-  $scope.makeApprover = function(index) {
-    console.log(index);
-    var user = $scope.authors[index];
-    user.is_approver = true;
+  $scope.changeActive = function(user) {
+    user.is_active = !user.is_active;
+    User.update(user);
+  };
 
-    User.update(user, function(updatedUser) {
-      $scope.authors.splice(index, 1);
-      $scope.approvers.push(updatedUser);
+  $scope.inviteApprover = function(email) {
+    $scope.inviteApproverError = null;
+    $scope.inviteUser({email: email, is_approver: true});
+  };
+
+  $scope.inviteAuthor = function(email) {
+    $scope.inviteAuthorError = null;
+    $scope.inviteUser({email: email, is_approver: false});
+  };
+
+  $scope.inviteUser = function(user) {
+    AuthService.invite(user, function(invitedUser) {
+      $scope.users.push(invitedUser);
+    }, function(error) {
+      if (user.is_approver) {
+        $scope.inviteApproverError = error;
+      } else {
+        $scope.inviteAuthorError = error;
+      }
     });
+  };
+
+  $scope.reinviteUser = function(user) {
+
   };
 })
 

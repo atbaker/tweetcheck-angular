@@ -8,7 +8,7 @@ angular.module('tweetCheck.directives', [])
     scope: true,
     require: 'ngModel',
     link: function (scope, elem, attrs, control) {
-        var checker = function () {
+        var checker = function() {
 
             //get the value of the first password
             var e1 = scope.$eval(attrs.ngModel);
@@ -26,15 +26,4 @@ angular.module('tweetCheck.directives', [])
     }
   };
 
-})
-
-.directive('userList', function() {
-  return {
-    restrict: 'E',
-    scope: {
-      users: '=',
-      currentUser: '='
-    },
-    templateUrl: 'views/partials/user-list.html'
-  };
 });

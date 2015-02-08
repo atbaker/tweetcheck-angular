@@ -65,7 +65,7 @@ angular.module('tweetCheck', [
         AuthService = $injector.get('AuthService');
       }
 
-      if (config.url.indexOf('api/') !== -1) {
+      if (config.url.indexOf('api/') !== -1 || config.url.indexOf('auth/invite') !== -1) {
         config.headers['Authorization'] = 'Token ' + $window.sessionStorage['token'];
       }
 

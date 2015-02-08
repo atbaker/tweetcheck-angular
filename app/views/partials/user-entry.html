@@ -1,0 +1,19 @@
+
+  <td class="vertical-align">{{orgUser.email}}</td>
+  <td>
+    <div ng-if="orgUser.id !== user.id">
+      <div ng-if="orgUser.is_active" class="btn-group btn-group-sm" role="group">
+
+        <button ng-if="orgUser.is_approver" ng-click="changeApprover(orgUser)" class="btn btn-default" type="button">Make author</button>          
+        <button ng-if="!orgUser.is_approver" ng-click="changeApprover(orgUser)" class="btn btn-default" type="button">Make approver</button>
+
+        <button ng-click="changeActive(orgUser)" class="btn btn-danger" type="button">Disable</button>
+      </div>
+
+      <button ng-if="!orgUser.is_active" ng-click="reinviteUser(orgUser)" class="btn btn-sm btn-primary">Re-invite user</button>
+    </div>
+
+    <div ng-if="orgUser.id === user.id" class="btn-group btn-group-sm">
+      <a ui-sref="dashboard.settings" class="btn btn-default">Go to my settings</a>
+    </div>
+  </td>

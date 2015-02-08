@@ -33,7 +33,9 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 })
 
 .factory('User', function($resource) {
-  return $resource('api/users/:id/', {id: '@id'});
+  return $resource('api/users/:id/', {id: '@id'}, {
+    update: {method: 'PUT'}
+  });
 })
 
 .factory('Realtime', function($rootScope, $http) {
@@ -88,7 +90,17 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
       $state.go('activate');
     })
     .error(function(data, status, headers) {
-      failure(data.error);
+      failure(data.error || 'There was an registering this user.');
+    });
+  };
+
+  authService.invite = function(userData, success, failure) {
+    $http.post('/auth/invite', userData)
+    .success(function(data, status, headers) {
+      success(data);
+    })
+    .error(function(data, status, headers) {
+      failure(data.error || 'There was an error inviting this user.');
     });
   };
 
