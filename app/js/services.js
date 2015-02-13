@@ -86,10 +86,10 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
 
   authService.register = function(userData, failure) {
     $http.post('/auth/register', userData)
-    .success(function(data, status, headers) {
+    .success(function(data) {
       $state.go('activate');
     })
-    .error(function(data, status, headers) {
+    .error(function(data) {
       failure(data.error || 'There was an registering this user.');
     });
   };
@@ -97,23 +97,31 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
   authService.activate = function(userData, failure) {
     var self = this;
     $http.post('/auth/activate-invitation', userData)
-    .success(function(data, status, headers) {
+    .success(function(data) {
       self.loginSuccess(data);
     })
-    .error(function(data, status, headers) {
+    .error(function(data) {
       failure(data.error || 'There was an error activating this user.');
     });
   }
 
   authService.invite = function(userData, success, failure) {
     $http.post('/auth/invite', userData)
-    .success(function(data, status, headers) {
+    .success(function(data) {
       success(data);
     })
-    .error(function(data, status, headers) {
+    .error(function(data) {
       failure(data.error || 'There was an error inviting this user.');
     });
   };
+
+  authService.reinvite = function(userData, success, failure) {
+    $http.get('/auth/reinvite?user=' + userData.id)
+    .success(success)
+    .error(function(data) {
+      failure(data.error || 'There was an error reinviting this user.');
+    })
+  }
 
   authService.loginSuccess = function(data, status, headers) {
     $cookieStore.put('token', data.token);

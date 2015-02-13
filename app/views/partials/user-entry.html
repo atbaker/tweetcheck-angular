@@ -10,7 +10,10 @@
         <button ng-click="changeActive(orgUser)" class="btn btn-danger" type="button">Disable</button>
       </div>
 
-      <button ng-if="!orgUser.is_active" ng-click="reinviteUser(orgUser)" class="btn btn-sm btn-primary">Re-invite user</button>
+      <button ng-if="!orgUser.is_active" ng-click="reinviteUser(orgUser)" ng-disabled="orgUser.reinvited" class="btn btn-sm btn-primary">
+        <span ng-if="!orgUser.reinvited">Re-invite user</span>
+        <span ng-if="orgUser.reinvited">Invitation sent</span>
+      </button>
     </div>
 
     <div ng-if="orgUser.id === user.id" class="btn-group btn-group-sm">
