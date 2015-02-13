@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h2>Set your password</h2>
+      <form role="form" name="activateInvitationForm" ng-submit="activate(user)" novalidate>
+        <div ng-if="activationError" class="alert alert-danger" role="alert" ng-bind="activationError"></div>
+
+        <div class="form-group" ng-class="{ 'has-error' : activateInvitationForm.password.$invalid && activateInvitationForm.password.$touched }">
+          <label class="control-label" for="inputPassword">Password</label>
+          <input type="password" class="form-control" name="password" id="inputPassword" ng-model="user.password" required>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : activateInvitationForm.password2.$invalid && activateInvitationForm.password2.$touched }">
+          <label class="control-label" for="inputPassword2">Confirm password</label>
+          <input type="password" class="form-control" name="password2" id="inputPassword2" ng-model="user.password2" password-match="user.password" required>
+          <span ng-if="activateInvitationForm.password2.$touched && activateInvitationForm.password2.$invalid" class="help-block">Your passwords do not match.</span>
+        </div>
+
+        <button type="submit" class="btn btn-block btn-primary" ng-disabled="activateInvitationForm.$invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

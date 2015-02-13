@@ -10,6 +10,15 @@ angular.module('tweetCheck.controllers', [])
   };
 })
 
+.controller('ActivateInvitationCtrl', function($scope, $stateParams, AuthService) {
+  $scope.activate = function(user) {
+    user.token = $stateParams.key;
+    AuthService.activate(user, function(error) {
+      $scope.activationError = error;
+    });
+  };
+})
+
 .controller('LoginCtrl', function($scope, AuthService) {
   $scope.login = function(user) {
     AuthService.login(user.email, user.password, function(error) {
@@ -263,7 +272,7 @@ angular.module('tweetCheck.controllers', [])
   };
 
   $scope.reinviteUser = function(user) {
-
+    // To-do
   };
 })
 

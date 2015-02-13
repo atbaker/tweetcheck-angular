@@ -94,6 +94,17 @@ angular.module('tweetCheck.services', ['ngResource', 'ngCookies'])
     });
   };
 
+  authService.activate = function(userData, failure) {
+    var self = this;
+    $http.post('/auth/activate-invitation', userData)
+    .success(function(data, status, headers) {
+      self.loginSuccess(data);
+    })
+    .error(function(data, status, headers) {
+      failure(data.error || 'There was an error activating this user.');
+    });
+  }
+
   authService.invite = function(userData, success, failure) {
     $http.post('/auth/invite', userData)
     .success(function(data, status, headers) {

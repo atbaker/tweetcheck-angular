@@ -5,7 +5,7 @@ angular.module('tweetCheck.states', ['ui.router'])
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('register', {
-      url: "/register",
+      url: '/register',
       templateUrl: '/views/register.html',
       controller: 'RegisterCtrl',
       data: {
@@ -14,15 +14,24 @@ angular.module('tweetCheck.states', ['ui.router'])
     })
 
     .state('activate', {
-      url: "/activate?token",
+      url: '/activate?token',
       templateUrl: '/views/activate.html',
       data: {
         pageTitle: 'Activate your account'
       }
     })
 
+    .state('activateInvitation', {
+      url: '/activate-invitation?key',
+      templateUrl: '/views/activate-invitation.html',
+      controller: 'ActivateInvitationCtrl',
+      data: {
+        pageTitle: 'Activate your account'
+      }
+    })
+
     .state('login', {
-      url: "/login",
+      url: '/login',
       templateUrl: '/views/login.html',
       controller: 'LoginCtrl',
       data: {
@@ -31,7 +40,7 @@ angular.module('tweetCheck.states', ['ui.router'])
     })
 
     .state('logout', {
-      url: "/logout",
+      url: '/logout',
       controller: 'LogoutCtrl'
     })
 
@@ -45,7 +54,7 @@ angular.module('tweetCheck.states', ['ui.router'])
     })
 
     .state('dashboard', {
-      url: "/dashboard",
+      url: '/dashboard',
       abstract: true,
       templateUrl: "/views/dashboard.html",
       controller: 'DashboardCtrl',
