@@ -8,7 +8,7 @@ angular.module('tweetCheck', [
   'tweetCheck.services'
 ])
 
-.run(function ($rootScope, $state, $stateParams, $anchorScroll, AuthService) {
+.run(function ($rootScope, $state, $stateParams, $anchorScroll, AuthService, $window) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
 
@@ -24,6 +24,10 @@ angular.module('tweetCheck', [
     } else if (toState.name === 'activate' && toParams.token !== undefined) {
       event.preventDefault();
       AuthService.loginSuccess({token: toParams.token});
+    } else if (toState.name === 'login' && $window.sessionStorage.hasOwnProperty('token')) {
+      // If the user is already logged in, redirect them to the dashboard
+      event.preventDefault();
+      $state.go('dashboard.review');
     }
   });
 
