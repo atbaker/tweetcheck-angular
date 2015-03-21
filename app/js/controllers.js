@@ -282,8 +282,4 @@ angular.module('tweetCheck.controllers', [])
       $scope.setInviteError(user, error);
     });
   };
-})
-
-.controller('SettingsCtrl', function($scope) {
-
 });

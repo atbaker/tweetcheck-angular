@@ -151,15 +151,6 @@ angular.module('tweetCheck.states', ['ui.router'])
       }
     })
 
-    .state('dashboard.settings', {
-      url: '/settings',
-      templateUrl: '/views/settings.html',
-      controller: 'SettingsCtrl',
-      data: {
-        pageTitle: 'Settings'
-      }
-    })
-
     .state('dashboard.detail', {
       url: '/:id',
       templateUrl: '/views/detail.html',
