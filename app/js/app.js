@@ -2,10 +2,10 @@
 angular.module('tweetCheck', [
   'angularMoment',
   'tweetCheck.states',
-  'tweetCheck.controllers',
   'tweetCheck.directives',
   'tweetCheck.filters',
-  'tweetCheck.services'
+  'ngResource',
+  'ngCookies'
 ])
 
 .run(function ($rootScope, $state, $stateParams, $anchorScroll, AuthService, $window) {
