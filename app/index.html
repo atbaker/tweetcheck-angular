@@ -1,520 +1,87 @@
-<!DOCTYPE html>
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="tweetCheck">
     <head>
-        <!-- =========================================
-        Basic
-        ========================================== -->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>TweetCheck - A dead-simple review process for your organization's tweets</title>
-        <meta name="description" content="TweetCheck - A dead-simple review process for your organization's tweets" />
-
-        <!-- =========================================
-        Mobile Configurations
-        ========================================== -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <meta name="GOOGLEBOT" content="index follow" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-
-        <!-- =========================================
-        fav & icons for iPhone and iPad
-        ========================================== -->
-        <link rel="shortcut icon" href="img/icons/favicon.ico" />
-        <link rel="apple-touch-icon-precomposed" href="img/icons/icon.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icons/icon@2x.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icons/icon-72.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/icons/icon-72@2x.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/icons/icon-60.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/icons/icon-60@2x.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/icons/icon-76.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/icons/icon-76@2x.png" />
-
-        <!-- =========================================
-        CSS
-        ========================================== -->
-        <link rel="stylesheet" media="screen" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" media="screen" href="css/landing.css" />
-        <link rel="stylesheet" media="screen" href="css/landing-blue.css"/>
-
-        <!-- =========================================
-        Head Libs
-        ========================================== -->
-        <script type="text/javascript" src="lib/modernizr/modernizr.js"></script>
-
-    </head><!-- /head -->
-
-    <!-- =========================================
-    body
-    ========================================== -->
-    <body class="static-image">
-
-        <!--[if lt IE 9]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- =========================================
-        Menu
-        ========================================== -->
-        <!-- nav-wrapper -->
-        <div id="nav-wrapper">
-            <!-- navbar -->
-            <div class="navbar">
-
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-
-                        <!-- col-md-12 -->
-                        <div class="col-md-12">
-
-                            <!-- navbar-header -->
-                            <div class="navbar-header">
-
-                                <!-- logo -->
-                                <a href="#home-section" class="navbar-brand scrollto" title="Horrus">
-                                    <img src="img/logo.png" alt="Logo" />
-                                </a><!-- /logo -->
-
-                                <a href="/login" class="btn btn-primary pull-right mobile-login-button hidden-lg">Log in</a>
-
-                            </div><!-- /navbar-header -->
-
-                            <!-- navbar-collapse -->
-                            <div class="navbar-collapse collapse">
-
-                                <!-- nav -->
-                                <ul class="nav navbar-nav navbar-right">
-
-                                    <p class="navbar-text">Already using TweetCheck?</p>
-
-                                    <li>
-                                        <a href="/login" class="btn btn-primary">Log in</a>
-                                    </li>
-
-                                </ul><!-- /nav -->
-
-                            </div><!-- /navbar-collapse -->
-
-                        </div><!-- /col-md-12 -->
-
-                    </div><!-- /row -->
-                </div><!-- /container -->
-
-            </div><!-- /navbar -->
-        </div><!-- /nav-wrapper -->
-
-        <!-- =========================================
-        Main Wrapper
-        ========================================== -->
-        <div id="main-wrapper">
-
-            <!-- =========================================
-            Home Section
-            ========================================== -->
-            <!-- home-section -->
-            <div id="home-section">
-                <!-- home-section-container -->
-                <div id="home-section-container">
-
-                    <!-- container -->
-                    <div class="container">
-                        <!-- row -->
-                        <div class="row">
-
-
-                            <!-- col-md-12 -->
-                            <div class="col-md-12">
-
-
-                                <!-- intro-message -->
-                                <div id="intro-message">
-
-                                    <!-- content -->
-                                    <div id="content">
-                                        The dead-simple way to manage your organization's Twitter account
-                                    </div><!-- /content -->
-
-                                </div><!-- /intro-message -->
-
-
-                            </div><!-- /col-md-12 -->
-
-
-                            <!-- owl-home-wrapper -->
-                            <div id="owl-home-wrapper">
-
-                                <!-- owl-home -->
-                                <div class="owl-home">
-
-                                    <!-- slide-item -->
-                                    <div>
-                                        <!-- slide-image -->
-                                        <img src="img/home-slider/slide01.png" alt="Slide Image" />
-                                    </div><!-- /slide-item -->
-
-                                </div><!-- /owl-home -->
-
-                            </div><!-- /owl-home-wrapper -->
-
-                        </div><!-- /row -->
-                    </div><!-- /container -->
-
-                </div><!-- /home-section-container -->
-            </div><!-- /home-section -->
-
-            <!-- =========================================
-            Subscribe Section
-            ========================================== -->
-            <!-- subscribe-section -->
-            <div id="subscribe-section">
-
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-
-
-                        <!-- col-md-6 -->
-                        <div class="col-md-9">
-                            <div class="short-section-title"><strong>Free</strong> while in beta.</strong> Get started in minutes.</div>
-                        </div><!-- /col-md-6 -->
-
-
-                        <!-- col-md-6 -->
-                        <div class="col-md-3">
-
-                            <a href="/register" class="btn btn-lg btn-block register-button">Sign up</a>
-
-                        </div><!-- /col-md-6 -->
-
-
-                    </div><!-- /row -->
-                </div><!-- /container -->
-
-            </div><!-- /subscribe-section -->
-
-            <!-- =========================================
-            Divider
-            ========================================== -->
-            <div class="divider"></div>
-
-            <!-- =========================================
-            Feature Section Page 2
-            ========================================== -->
-            <!-- feature-section-page2 -->
-            <div id="feature-section-page1">
-
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-
-
-                        <!-- col-md-12 -->
-                        <div class="col-md-12">
-
-                            <!-- section-title-container -->
-                            <div class="section-title-container">
-
-                                <!-- section-title -->
-                                <div class="section-title wow fadeInLeft" data-wow-duration="1.5s">
-                                    <span>Dead simple</span>
-                                </div><!-- /section-title -->
-
-                                <!-- section-desc -->
-                                <div class="section-desc wow fadeInRight" data-wow-duration="1.5s">
-                                    Everything you need to manage your organization's tweets. Nothing you don't
-                                </div><!-- /section-desc -->
-
-                            </div><!-- /section-title-container -->
-
-                        </div><!-- /col-md-12 -->
-
-
-                        <!-- col-lg-6 col-md-12 -->
-                        <div class="col-lg-6 col-md-12">
-
-                            <!-- feature-box-style2 -->
-                            <div class="feature-box-style2 wow fadeInLeft" data-wow-duration="1.5s">
-
-                                <!-- feature-box-icon -->
-                                <div class="feature-box-icon">
-                                    <i class="fa fa-sliders"></i>
-                                </div><!-- /feature-box-icon -->
-
-                                <!-- feature-box-title -->
-                                <div class="feature-box-title">
-                                    Easy to customize
-                                </div><!-- /feature-box-title -->
-
-                                <!-- feature-box-content -->
-                                <div class="feature-box-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, diam nonummy nibh tincidunt ut dolore magna aliquam erat volutpat.</p>
-                                </div><!-- /feature-box-content -->
-
-                            </div><!-- /feature-box-style2 -->
-
-                            <!-- feature-box-style2 -->
-                            <div class="feature-box-style2 wow fadeInLeft" data-wow-duration="1.5s">
-
-                                <!-- feature-box-icon -->
-                                <div class="feature-box-icon">
-                                    <i class="fa fa-support"></i>
-                                </div><!-- /feature-box-icon -->
-
-                                <!-- feature-box-title -->
-                                <div class="feature-box-title">
-                                    great support
-                                </div><!-- /feature-box-title -->
-
-                                <!-- feature-box-content -->
-                                <div class="feature-box-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, diam nonummy nibh tincidunt ut dolore magna aliquam erat volutpat.</p>
-                                </div><!-- /feature-box-content -->
-
-                            </div><!-- /feature-box-style2 -->
-
-                            <!-- feature-box-style2 -->
-                            <div class="feature-box-style2 wow fadeInLeft" data-wow-duration="1.5s">
-
-                                <!-- feature-box-icon -->
-                                <div class="feature-box-icon">
-                                    <i class="fa fa-book"></i>
-                                </div><!-- /feature-box-icon -->
-
-                                <!-- feature-box-title -->
-                                <div class="feature-box-title">
-                                    Well Documented
-                                </div><!-- /feature-box-title -->
-
-                                <!-- feature-box-content -->
-                                <div class="feature-box-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, diam nonummy nibh tincidunt ut dolore magna aliquam erat volutpat.</p>
-                                </div><!-- /feature-box-content -->
-
-                            </div><!-- /feature-box-style2 -->
-
-                        </div><!-- /col-lg-6 col-md-12 -->
-
-
-                        <!-- col-lg-6 col-md-12 -->
-                        <div class="col-lg-6 col-md-12">
-
-                            <!-- feature-image -->
-                            <div class="feature-image">
-                                <img src="img/feature-images/feature-page2-imac.png" alt="iMac Image" class="wow fadeInLeft" data-wow-duration="1.5s" />
-                                <img src="img/feature-images/feature-page2-macbook.png" alt="Macbook Image" class="wow fadeInRight" data-wow-duration="1.5s" />
-                            </div><!-- /feature-image -->
-
-                        </div><!-- /col-lg-6 col-md-12 -->
-
-
-                    </div><!-- /row -->
-                </div><!-- /container -->
-
-            </div><!-- /feature-section-page2 -->
-
-            <!-- =========================================
-            Divider
-            ========================================== -->
-            <div class="divider"></div>
-
-            <!-- =========================================
-            Feature Section Page 2
-            ========================================== -->
-            <!-- feature-section-page3 -->
-            <div id="feature-section-page2">
-
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-
-
-                        <!-- col-md-12 -->
-                        <div class="col-md-12">
-
-                            <!-- section-title-container -->
-                            <div class="section-title-container">
-
-                                <!-- section-title -->
-                                <div class="section-title wow fadeInLeft" data-wow-duration="1.5s">
-                                    <span>Anytime, anywhere</span>
-                                </div><!-- /section-title -->
-
-                                <!-- section-desc -->
-                                <div class="section-desc wow fadeInRight" data-wow-duration="1.5s">
-                                    Use the TweetCheck mobile site, iOS, or Android apps to review tweets on the go
-                                </div><!-- /section-desc -->
-
-                            </div><!-- /section-title-container -->
-
-                        </div><!-- /col-md-12 -->
-
-
-                        <!-- col-lg-6 col-md-12 -->
-                        <div class="col-lg-6 col-md-12">
-
-                            <!-- feature-image -->
-                            <div class="feature-image">
-                                <img src="img/feature-images/feature-page3-iPad.png" alt="iPad Image" class="wow fadeInLeft" data-wow-duration="1.5s" />
-                                <img src="img/feature-images/feature-page3-iPhone.png" alt="iPhone Image" class="wow fadeInRight" data-wow-duration="1.5s" />
-                            </div><!-- /feature-image -->
-
-                        </div><!-- /col-lg-6 col-md-12 -->
-
-
-                        <!-- col-lg-6 col-md-12 -->
-                        <div class="col-lg-6 col-md-12">
-
-
-                            <!-- feature-content -->
-                            <div class="feature-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt tellus vitae facilisis tincidunt. Morbi nec posuere nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet eros eget nisl feugiat egestas et ut risus. Cras dolor lacus.</p>
-                            </div><!-- /feature-content -->
-
-
-                            <!-- accordion -->
-                            <div class="panel-group" id="accordion">
-
-
-                                <!-- panel -->
-                                <div class="panel panel-nesto">
-
-                                    <!-- panel-heading -->
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#panel1">
-                                                Bootstrap 3.1
-                                            </a>
-                                        </h3>
-                                    </div><!-- /panel-heading -->
-
-                                    <!-- panel1 -->
-                                    <div id="panel1" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt tellus vitae facilisis tincidunt. Morbi nec posuere nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet eros eget nisl feugiat egestas et ut risus. Cras dolor lacus.
-                                        </div>
-                                    </div><!-- /panel1 -->
-
-                                </div><!-- /panel -->
-
-
-                                <!-- panel -->
-                                <div class="panel panel-nesto">
-
-                                    <!-- panel-heading -->
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#panel2">
-                                                400+ Font-Awesome Icons
-                                            </a>
-                                        </h3>
-                                    </div><!-- /panel-heading -->
-
-                                    <!-- panel2 -->
-                                    <div id="panel2" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt tellus vitae facilisis tincidunt. Morbi nec posuere nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet eros eget nisl feugiat egestas et ut risus. Cras dolor lacus.
-                                        </div>
-                                    </div><!-- /panel2 -->
-
-                                </div><!-- /panel -->
-
-
-                                <!-- panel -->
-                                <div class="panel panel-nesto">
-
-                                    <!-- panel-heading -->
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#panel3">
-                                                Smooth Scroll
-                                            </a>
-                                        </h3>
-                                    </div><!-- /panel-heading -->
-
-                                    <!-- panel3 -->
-                                    <div id="panel3" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt tellus vitae facilisis tincidunt. Morbi nec posuere nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet eros eget nisl feugiat egestas et ut risus. Cras dolor lacus.
-                                        </div>
-                                    </div><!-- /panel3 -->
-
-                                </div><!-- /panel -->
-
-
-                                <!-- panel -->
-                                <div class="panel panel-nesto">
-
-                                    <!-- panel-heading -->
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#panel4">
-                                                swipe touch slider
-                                            </a>
-                                        </h3>
-                                    </div><!-- /panel-heading -->
-
-                                    <!-- panel4 -->
-                                    <div id="panel4" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt tellus vitae facilisis tincidunt. Morbi nec posuere nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet eros eget nisl feugiat egestas et ut risus. Cras dolor lacus.
-                                        </div>
-                                    </div><!-- /panel4 -->
-
-                                </div><!-- /panel -->
-
-                            </div><!-- /accordion -->
-
-                        </div><!-- /col-lg-6 col-md-12 -->
-
-                    </div><!-- /row -->
-                </div><!-- /container -->
-
-            </div><!-- /feature-section-page3 -->
-
-            <!-- =========================================
-            Divider
-            ========================================== -->
-            <div class="divider"></div>
-
-            <!-- =========================================
-            Copyright Section
-            ========================================== -->
-            <!-- copyright-section -->
-            <div id="copyright-section">
-
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-
-                        <!-- col-md-12 -->
-                        <div class="col-md-12">
-
-                            <!-- copyright -->
-                            <div class="copyright wow fadeInUp" data-wow-duration="1.5s">
-                                    Copyright &copy; 2015 <a href="http://www.tweetcheck.com">TweetCheck</a>. All rights reserved.
-                            </div><!-- /copyright -->
-
-                        </div><!-- /col-md-12 -->
-
-                    </div><!-- /row -->
-                </div><!-- /container -->
-
-            </div><!-- /copyright-section -->
-
-        </div><!-- /main-wrapper -->
-        <!-- =========================================
-        java script
-        ========================================== -->
-        <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="lib/jquery.scrollTo/jquery.scrollTo.min.js"></script>
-        <script type="text/javascript" src="js/landing.js"></script>
-
-    </body><!-- /body -->
-</html><!-- /html -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title ng-bind="'TweetCheck - ' + $state.current.data.pageTitle"></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <meta name="robots" content="noindex, nofollow">
+
+        <base href="/" />
+
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/admin.css">
+        <!-- endbuild -->
+
+        <!--
+        <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/lib/font-awesome/css/font-awesome.min.css" >
+        <link rel="stylesheet" type="text/css" href="/css/tweet-check.css">
+        <link rel="stylesheet" type="text/css" href="/css/admin.css">
+        <link rel="stylesheet" type="text/css" href="/lib/animate.css/animate.min.css">
+        -->
+
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="lib/jquery/dist/jquery.js"></script>
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular-cookies/angular-cookies.js"></script>
+        <script src="lib/angular-mocks/angular-mocks.js"></script>
+        <script src="lib/angular-route/angular-route.js"></script>
+        <script src="lib/angular-resource/angular-resource.js"></script>
+        <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+        <script src="lib/angular-touch/angular-touch.js"></script>
+        <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="lib/angular-strap/dist/angular-strap.js"></script>
+        <script src="lib/angular-strap/dist/angular-strap.tpl.js"></script>
+        <script src="lib/moment/moment.js"></script>
+        <script src="lib/angular-moment/angular-moment.js"></script>
+        <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <!-- endbuild -->
+
+        <!-- 
+        <script src="/lib/angular/angular.js"></script>
+        <script src="/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="/lib/angular-cookies/angular-cookies.min.js"></script>
+        <script src="/lib/angular-resource/angular-resource.min.js"></script>
+        <script src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="/lib/moment/moment.js"></script>
+        <script src="/lib/angular-moment/angular-moment.min.js"></script>
+        <script src="/lib/socket.io-client/socket.io.js"></script>
+        
+        <script src="/js/app.js"></script>
+        <script src="/js/states.js"></script>
+        <script src="/js/directives.js"></script>
+        <script src="/js/filters.js"></script>
+
+        <script src="/js/services/resources.js"></script>
+        <script src="/js/services/realtime.js"></script>
+        <script src="/js/services/auth.js"></script>
+
+        <script src="/js/controllers/auth.js"></script>
+        <script src="/js/controllers/tweetList.js"></script>
+        <script src="/js/controllers/history.js"></script>
+        <script src="/js/controllers/detail.js"></script>
+        <script src="/js/controllers/compose.js"></script>
+        <script src="/js/controllers/users.js"></script>
+        -->
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <ui-view/>
+        </div>
+    </body>
+</html>

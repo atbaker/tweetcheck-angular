@@ -1,4 +1,4 @@
 tweetcheck-angular
 ==================
 
-Contains Angular front-end code and Nginx configuration for the Tweetcheck web app
+Contains Angular front-end code for the Tweetcheck web app

@@ -1,0 +1,5 @@
+# These directories will not be sent to the daemon 
+# as part of the build context
+
+node_modules/
+src/lib
