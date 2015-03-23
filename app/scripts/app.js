@@ -1,11 +1,13 @@
-// App module
+'use strict';
+
 angular.module('tweetCheck', [
   'angularMoment',
   'tweetCheck.states',
   'tweetCheck.directives',
   'tweetCheck.filters',
   'ngResource',
-  'ngCookies'
+  'ngCookies',
+  'ngTouch'
 ])
 
 .run(function ($rootScope, $state, $stateParams, $anchorScroll, AuthService, $window) {

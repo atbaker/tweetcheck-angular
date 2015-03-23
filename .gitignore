@@ -1,3 +1,7 @@
+# Project-specific
+app/dashboard
+
+# Node / Angular / Grunt
 node_modules
 dist
 .tmp

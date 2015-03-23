@@ -1,4 +1,4 @@
-/* Directives */
+'use strict';
 
 angular.module('tweetCheck.directives', [])
  

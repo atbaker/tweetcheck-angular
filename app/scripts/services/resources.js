@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .factory('Tweet', function($resource) {
@@ -9,7 +11,7 @@ angular.module('tweetCheck')
 
 .factory('Handle', function($resource) {
   return $resource('api/handles/:id/', {id: '@id'}, {
-      queryObject: {method: 'GET', transformResponse: function(data, headers) {
+      queryObject: {method: 'GET', transformResponse: function(data) {
         var handles = angular.fromJson(data);
         var handleObject = {};
 

@@ -1,4 +1,4 @@
-// ui-router states module
+'use strict';
 
 angular.module('tweetCheck.states', ['ui.router'])
 

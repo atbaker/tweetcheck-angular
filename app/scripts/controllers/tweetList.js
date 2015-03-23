@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .controller('TweetListCtrl', function($scope, tweets, activity, $stateParams, $location, $anchorScroll, Tweet, Realtime) {

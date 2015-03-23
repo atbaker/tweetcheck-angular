@@ -1,4 +1,4 @@
-/* Filters */
+'use strict';
 
 angular.module('tweetCheck.filters', ['ngSanitize'])
 

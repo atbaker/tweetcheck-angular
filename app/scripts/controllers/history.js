@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .controller('TweetHistoryCtrl', function($scope, tweets) {

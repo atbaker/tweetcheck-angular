@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .factory('AuthService', function($rootScope, Handle, $http, $state, $cookieStore, $q, User, $window) {

@@ -7,7 +7,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install Bower
-RUN npm install -g grunt bower && npm cache clear
+RUN npm install -g grunt-cli bower && npm cache clear
 
 # Install package dependencies
 COPY package.json /usr/src/app/
@@ -21,7 +21,7 @@ RUN bower install --allow-root --config.interactive=false
 COPY . /usr/src/app
 
 # Build our code into /dist
-RUN gulp build
+RUN grunt build
 
-# Expose the /dist directory as a volume
-VOLUME /usr/src/app/dist
+# Expose the app directory as a volume
+VOLUME /usr/src/app

@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .controller('DetailCtrl', function($scope, tweet, activity, Tweet) {

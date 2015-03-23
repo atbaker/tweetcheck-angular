@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .controller('RegisterCtrl', function($scope, AuthService) {

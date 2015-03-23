@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .factory('Realtime', function($rootScope, $http) {

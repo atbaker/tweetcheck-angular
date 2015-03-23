@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tweetCheck')
 
 .controller('ComposeCtrl', function($scope, $rootScope, $state, tweet, handles, Tweet) {
