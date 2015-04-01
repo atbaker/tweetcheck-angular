@@ -8,7 +8,7 @@ dependencies:
 
 test:
   override:
-    - docker run tweetcheck_angular grunt test
+    - docker run tweetcheck-angular grunt test
 
 deployment:
   hub:
