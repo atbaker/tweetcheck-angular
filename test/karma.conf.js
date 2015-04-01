@@ -35,7 +35,6 @@ module.exports = function(config) {
       'app/bower_components/bootstrap/dist/js/bootstrap.js',
       // endbower
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 
