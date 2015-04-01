@@ -1,6 +1,6 @@
 # Custom Dockerfile for Nginx
 
-FROM node:0.12
+FROM node:0.10
 
 # Create a directory for our source code
 RUN mkdir -p /usr/src/app
@@ -14,7 +14,7 @@ COPY package.json /usr/src/app/
 RUN npm install
 
 # Install bower dependencies
-COPY bower.json /usr/src/app/
+COPY bower.json .bowerrc /usr/src/app/
 RUN bower install --allow-root --config.interactive=false
 
 # Add source code to image
