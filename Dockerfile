@@ -1,6 +1,6 @@
 # Custom Dockerfile for Nginx
 
-FROM node:0.10
+FROM node:0.12
 
 # Create a directory for our source code
 RUN mkdir -p /usr/src/app
