@@ -15,7 +15,7 @@ RUN npm install
 
 # Install bower dependencies
 COPY bower.json .bowerrc /usr/src/app/
-RUN bower install --allow-root --config.interactive=false
+RUN bower install --config.interactive=false
 
 # Add source code to image
 COPY . /usr/src/app
