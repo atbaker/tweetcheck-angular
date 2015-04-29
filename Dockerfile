@@ -23,5 +23,9 @@ COPY . /usr/src/app
 # Build our code into /dist
 RUN grunt build
 
+# Add a simple command - we're just using this container
+# to build the Angular app's static files
+CMD ["echo", "Front-end container"]
+
 # Expose the app directory as a volume
 VOLUME /usr/src/app
