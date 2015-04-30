@@ -51,17 +51,19 @@
     </div>
   </div>
   <div class="panel-footer">
-    <button ng-if="tweet.status === 0 || tweet.status === 3" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]">
-        <span class="fa fa-fw fa-remove"></span> Reject
-    </button>
-    <button ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]">
-        <span ng-if="tweet.eta === null">
-            <span class="fa fa-fw fa-check"></span> Post now
-        </span>
-        <span ng-if="tweet.eta !== null">
-            <span class="fa fa-fw fa-clock-o"></span> Add to schedule
-        </span>
-    </button>
+    <span ng-if="user.is_approver">
+        <button ng-if="tweet.status === 0 || tweet.status === 3" ng-click="rejectTweet(tweet)" type="button" class="btn btn-danger" ng-disabled="processing || processingTracker[tweet.id]">
+            <span class="fa fa-fw fa-remove"></span> Reject
+        </button>
+        <button ng-if="tweet.status === 0" ng-click="approveTweet(tweet)" type="button" class="btn btn-success" ng-disabled="processing || processingTracker[tweet.id]">
+            <span ng-if="tweet.eta === null">
+                <span class="fa fa-fw fa-check"></span> Post now
+            </span>
+            <span ng-if="tweet.eta !== null">
+                <span class="fa fa-fw fa-clock-o"></span> Add to schedule
+            </span>
+        </button>
+    </span>
 
     <div ng-switch on="tweet.status" ng-if="!(processing || processingTracker[tweet.id])" class="card-message hidden-xs pull-right">
         <small ng-switch-when="0" ng-if="tweet.created === tweet.last_modified">Created by {{tweet.author}} <span am-time-ago="tweet.created"></span></small>
